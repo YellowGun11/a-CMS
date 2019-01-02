@@ -1,0 +1,65 @@
+div, ul, li {
+    margin: 0;
+    padding: 0
+}
+
+a {
+    text-decoration: none;
+    color: #222;
+}
+
+.notice {
+    width: 50%;
+    line-height: 30px;
+    background-color: #fff;
+    box-shadow: 0 0 4px #ccc;
+    height: 30px;
+    overflow: hidden;
+    margin: 15px 10px;
+    font-size: 14px;
+}
+
+.notice ul li {
+    list-style: none;
+    line-height: 30px;
+    display: block;
+    margin-left: 80px;
+}
+
+.notice a {
+    float: left;
+    display: inline-block;
+    width: 70%;
+    margin-left: 20px;
+    text-decoration: none;
+}
+
+.notice a:first-child {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.notice a span {
+    color: #999;
+    font-size: 12px;
+    margin-right: 10px;
+}
+
+.more {
+    position: absolute;
+    top: 10px;
+    left: 633px;
+    width: auto;
+    font-size: 12px;
+    color: #ff9900;
+    text-decoration: none;
+}
+
+.new-notice {
+    font-size: 30px;
+    position: absolute;
+    top: 23px;
+    left: 33px;
+    color: #aaa;
+}

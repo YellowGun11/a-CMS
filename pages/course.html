@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- 可选的 Bootstrap 主题文件（一般不用引入） -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap-theme.min.css"
+          integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+
+    <title>Title</title>
+    <style>
+        .header {
+            height: 60px;
+            /*background-color: #63a35c;*/
+            color: #5B676E;
+            margin-top: -35px;
+        }
+
+        .header > h3 {
+            line-height: 90px;
+        }
+
+        .d1 {
+            border: 0.5px solid #768289;
+            /*height: 0;*/
+        }
+
+        .d2 {
+            margin-top: 30px;
+        }
+
+        #addBtn {
+            /*background-color: #424A5D;*/
+            width: 100px;
+            height: 40px;
+            line-height: 30px;
+            color: white;
+            /*text-align: center;*/
+            margin-left: 80px;
+            margin-top: 50px;
+            /*cursor: pointer;*/
+        }
+
+        #course_btn > button {
+            outline: none;
+        }
+
+        .table {
+            position: absolute;
+        }
+
+        .d21 {
+            position: relative;
+            margin-top: 250px;
+        }
+
+        #changeTable {
+            border: 1px solid darkgoldenrod;
+            color: navy;
+            width: 300px;
+            margin-top: 10px;
+        }
+
+        #changeTable > tbody > tr {
+            border: 1px solid darkgoldenrod;
+
+        }
+
+        #changeTable > tbody > tr > td {
+            border: 1px solid darkgoldenrod;
+        }
+
+        .changeTr > td {
+            width: 50px;
+
+        }
+
+        #changeTable input{
+            width: 78px;
+        }
+        #courseList{
+            margin-top: 30px;
+        }
+        .glyphicon{
+            font-size: 16px;
+            margin-top: -8px;
+        }
+        .header>h3{
+            margin-left: 18px;
+            color: black;
+        }
+        .table99{
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row">
+        <div class="header"><h3><span class="glyphicon glyphicon-menu-right"></span><span>课程系统</span></h3></div>
+    </div>
+    <div class="container-fluid">
+
+        <div class="row d2">
+            <div id="courseList" class="col-lg-3 col-md-3">
+                <div id="course_btn" >
+
+                    <!--<button>运动能力</button>-->
+                    <!--<button>学前准备</button>-->
+                    <!--<button>沟通能力</button>-->
+                    <!--<button>语言能力</button>-->
+                    <!--<button>团队协作</button>-->
+                    <!--<button>社交能力</button>-->
+                </div>
+                <div id="addBtn" type="button" class="btn btn-sm btn-primary" data-toggle="modal"
+                     data-target="#exampleModal">添加新课程
+                </div>
+                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                     aria-labelledby="exampleModalLabel">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                        aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="exampleModalLabel">添加新课程</h4>
+                            </div>
+                            <div class="modal-body">
+                                <form>
+                                    <div class="form-group">
+                                        <label class="control-label">课程名称:</label>
+                                        <input type="text" class="form-control" id="courseName">
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">课程编号:</label>
+                                        <input class="form-control" id="courseId">
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">科任老师:</label>
+                                        <input class="form-control" id="courseTeacher">
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">课程描述:</label>
+                                        <input type="text" class="form-control" id="courseContent">
+                                    </div>
+
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-primary btn-default" data-dismiss="modal"
+                                        id="saveBtn">添加
+                                </button>
+                                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="drapList" class="col-lg-8 col-md-8">
+                <!--//班级下拉菜单-->
+                <div class="dropdown">
+                    <button class="btn btn-info dropdown-toggle grade" type="button" id="dropdownMenu1"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                        <span>班级</span>
+                        <span class="caret"></span>
+                    </button>
+                    <button id="changeCourse" type="button" class="btn btn-primary btn-md" data-toggle="modal"
+                            data-target="#myModal" style="margin-left: 80%;width: 68px">
+                        修改
+                    </button>
+                    <ul id="courseUl" class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                        <li><a href="#">小班</a></li>
+                        <li><a href="#">中班</a></li>
+                        <li><a href="#">大班</a></li>
+                    </ul>
+                </div>
+                <!--//课表-->
+                <table id="table1" class="table table-bordered table99">
+                    <thead>
+                    <tr class="success">
+                        <th>Sun</th>
+                        <th>Mon</th>
+                        <th>Tue</th>
+                        <th>Wed</th>
+                        <th>Thu</th>
+                        <th>Fri</th>
+                        <th>Sat</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    </tbody>
+
+                </table>
+
+
+                <div class="row d21">
+                    <div class="col-lg-9 col-md-9"></div>
+                    <div class="col-lg-3 col-md-3">
+                        <!-- Modal -->
+                        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span></button>
+                                        <h4 class="modal-title" id="myModalLabel">课程系统</h4>
+                                    </div>
+                                    <div id="abc" class="modal-body modal-body1">
+                                        班级：
+                                        <select name="" id="selName">
+                                            <option value="1">小班</option>
+                                            <option value="2">中班</option>
+                                            <option value="3">大班</option>
+                                        </select>
+                                        <table id="changeTable">
+                                            <thead>
+                                            <tr class="changeTr">
+                                                <th>Sun</th>
+                                                <th>Mon</th>
+                                                <th>Tue</th>
+                                                <th>Wed</th>
+                                                <th>Thu</th>
+                                                <th>Fri</th>
+                                                <th>Sat</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button id="saveChange" type="button" class="btn btn-primary btn-default"
+                                                data-dismiss="modal">保存
+                                        </button>
+                                        <button id="motaiClose" type="button" class="btn btn-default" data-dismiss="modal">关闭
+                                        </button>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-1"></div>
+        </div>
+    </div>
+
+</div>
+<script src="../js/courseDate.js"></script>
+<script src="../lib/bootstrap-3.3.5-dist/js/jquery-1.11.3.js"></script>
+<script src="../lib/bootstrap-3.3.5-dist/js/bootstrap.js"></script>
+<script>
+    var arr1=[
+        {
+            Sun:"",
+            Mon:"",
+            Tue:"",
+            Wed:"",
+            Thu:"",
+            Fri:"学前教育",
+            Sat:""
+        },
+        {
+            Sun:"沟通交流",
+            Mon:"沟通交流",
+            Tue:"沟通交流",
+            Wed:"沟通交流",
+            Thu:"沟通交流",
+            Fri:"沟通交流",
+            Sat:"学前教育"
+        },
+        {
+            Sun:"团队协作",
+            Mon:"团队协作",
+            Tue:"沟通交流",
+            Wed:"语言能力",
+            Thu:"团队协作",
+            Fri:"团队协作",
+            Sat:"团队协作"
+        },
+        {
+            Sun:"语言能力",
+            Mon:"语言能力",
+            Tue:"沟通交流",
+            Wed:"语言能力",
+            Thu:"语言能力",
+            Fri:"语言能力",
+            Sat:"团队协作"
+        },
+        {
+            Sun:"语言能力",
+            Mon:"运动能力",
+            Tue:"沟通交流",
+            Wed:"运动能力",
+            Thu:"团队协作",
+            Fri:"运动能力",
+            Sat:"运动能力"
+        },
+    ];
+    var arr2=[
+        {
+            Sun:"沟通交流",
+            Mon:"学前教育",
+            Tue:"",
+            Wed:"",
+            Thu:"",
+            Fri:"运动能力",
+            Sat:"运动能力"
+        },
+        {
+            Sun:"",
+            Mon:"",
+            Tue:"运动能力",
+            Wed:"运动能力",
+            Thu:"",
+            Fri:"沟通交流",
+            Sat:"学前教育"
+        },
+        {
+            Sun:"",
+            Mon:"",
+            Tue:"沟通交流",
+            Wed:"语言能力",
+            Thu:"团队协作",
+            Fri:"",
+            Sat:""
+        },
+        {
+            Sun:"运动能力",
+            Mon:"",
+            Tue:"沟通交流",
+            Wed:"语言能力",
+            Thu:"",
+            Fri:"",
+            Sat:"团队协作"
+        },
+        {
+            Sun:"语言能力",
+            Mon:"",
+            Tue:"沟通交流",
+            Wed:"",
+            Thu:"团队协作",
+            Fri:"",
+            Sat:"运动能力"
+        }
+    ];
+    var arr3=[
+        {
+            Sun:"",
+            Mon:"学前教育",
+            Tue:"",
+            Wed:"",
+            Thu:"",
+            Fri:"",
+            Sat:""
+        },
+        {
+            Sun:"",
+            Mon:"",
+            Tue:"",
+            Wed:"",
+            Thu:"",
+            Fri:"沟通交流",
+            Sat:"学前教育"
+        },
+        {
+            Sun:"",
+            Mon:"",
+            Tue:"沟通交流",
+            Wed:"语言能力",
+            Thu:"团队协作",
+            Fri:"",
+            Sat:""
+        },
+        {
+            Sun:"",
+            Mon:"",
+            Tue:"沟通交流",
+            Wed:"语言能力",
+            Thu:"",
+            Fri:"",
+            Sat:""
+        },
+        {
+            Sun:"语言能力",
+            Mon:"",
+            Tue:"沟通交流",
+            Wed:"",
+            Thu:"团队协作",
+            Fri:"",
+            Sat:"运动能力"
+        }
+    ];
+    var currentTableInput = 1
+    //模态框jq
+    $('#myModal').on('shown.bs.modal', function () {
+        $('#myInput').focus()
+    });
+    //模态框close
+
+    //页面第一次渲染
+    renderTatble(currentTableInput)
+    //jq添加table
+
+    function renderTatble (num) {
+        var arr
+        if(num==1){
+            arr = arr1
+        }else if(num==2){
+            arr = arr2
+        }else if(num==3){
+            arr = arr3
+        }
+        $("#table1 tbody").html("");
+        //通过数据渲染页面
+        for(var i=0;i<arr.length;i++){
+            $("#table1 tbody").append(`
+            <tr>
+                <td>${arr[i].Sun}</td>
+                <td>${arr[i].Mon}</td>
+                <td>${arr[i].Tue}</td>
+                <td>${arr[i].Wed}</td>
+                <td>${arr[i].Thu}</td>
+                <td>${arr[i].Fri}</td>
+                <td>${arr[i].Sat}</td>
+            </tr>
+        `)
+        }
+
+    }
+    function renderTatbleInput (num) {
+        $(".modal-body1").html("");
+        var arr;
+        if(num==1){
+            arr = arr1;
+            $(".modal-body1").append(
+                `班级：
+                                       <select name="" id="selName">
+                                       <!--<option value="0">&#45;&#45;请选择&#45;&#45;</option>-->
+                                       <option value="1">小班</option>
+                                       <option value="2">中班</option>
+                                       <option value="3">大班</option>
+                                       </select>`)
+        }else if(num==2){
+            arr = arr2;
+
+            $(".modal-body1").append(
+                `班级：
+                                       <select name="" id="selName">
+                                       <!--<option value="0">&#45;&#45;请选择&#45;&#45;</option>-->
+                                       <option value="2">中班</option>
+                                       <option value="1">小班</option>
+                                       <option value="3">大班</option>
+                                       </select>`)
+        }else if(num==3){
+            arr = arr3;
+
+            $(".modal-body1").append(
+                `班级：
+                                       <select name="" id="selName">
+                                       <!--<option value="0">&#45;&#45;请选择&#45;&#45;</option>-->
+                                   <option value="3">大班</option>
+                                     <option value="2">中班</option>
+                                       <option value="1">小班</option>
+                                       </select>`)
+        }
+
+        $(".modal-body1").append(
+            `
+                           <!--班级：
+                                       <select name="" id="selName">
+                                       <option value="0">&#45;&#45;请选择&#45;&#45;</option>
+                                       <option value="1">小班</option>
+                                       <option value="2">中班</option>
+                                       <option value="3">大班</option>
+                                       </select>-->
+                                       <table id="changeTable">
+                                         <thead>
+                                           <tr class="changeTr">
+                                                <th>Sun</th>
+                                                <th>Mon</th>
+                                                <th>Tue</th>
+                                                <th>Wed</th>
+                                                <th>Thu</th>
+                                                <th>Fri</th>
+                                                <th>Sat</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            </tbody>
+                                        </table>`);
+        console.log(1235678)
+        //通过数据渲染页面
+        for(var i=0;i<arr.length;i++){
+            $("#changeTable tbody").append(`
+            <tr>
+                <td><input onblur="getValue(${i},'Sun',this)" type="" value="${arr[i].Sun}"></td>
+                <td><input onblur="getValue(${i},'Mon',this)" type="" value="${arr[i].Mon}"></td>
+                <td><input onblur="getValue(${i},'Tue',this)" type="" value="${arr[i].Tue}"></td>
+                <td><input onblur="getValue(${i},'Wed',this)" type="" value="${arr[i].Wed}"></td>
+                <td><input onblur="getValue(${i},'Thu',this)" type="" value="${arr[i].Thu}"></td>
+                <td><input onblur="getValue(${i},'Fri',this)" type="" value="${arr[i].Fri}"></td>
+                <td><input onblur="getValue(${i},'Sat',this)" type="" value="${arr[i].Sat}"></td>
+            </tr>
+        `)
+        }
+
+    }
+    //隐藏table
+    $(".table").css({opacity: 0});
+    $("#table1").css({opacity: 1});
+    $("#courseUl li").click(function () {
+        if($(this).text()=="小班"){
+            $("#dropdownMenu1").html($(this).text()+"<span class='caret'></span>");
+            currentTableInput = 1
+        }else if($(this).text()=="中班"){
+            $("#dropdownMenu1").html($(this).text()+"<span class='caret'></span>");
+            currentTableInput = 2
+        }else if($(this).text()=="大班"){
+            $("#dropdownMenu1").html($(this).text()+"<span class='caret'></span>");
+            currentTableInput = 3
+        }
+        renderTatble(currentTableInput)
+    });
+    //渲染课程种类
+    //重置输入框
+    $("#addBtn").click(function () {
+        $("#courseId").val("");
+        $("#courseName").val("");
+        $("#courseTeacher").val("");
+        $("#courseContent").val("")
+    });
+    //添加（保存）课程种类
+    $("#saveBtn").click(function () {
+        projectObj.push(
+            {
+                projectId: $("#courseId").val(),
+                projectName: $("#courseName").val(),
+                employeeName: $("#courseTeacher").val(),
+                projectContent: $("#courseContent").val()
+            }
+        );
+        $("#course_btn").append(
+            `<button  data-toggle="modal" data-target="#myModal" class="btn btn-sm newBtn">${$("#courseName").val() + $("#courseId").val()}</button>`
+        );
+
+        $("#course_btn button").css({
+            backgroundColor: "#FFD777",
+            width: "100px",
+            height: "40px",
+            marginTop: "15px",
+            marginLeft: "10px",
+            color: "white",
+        });
+        $("#course_btn button").click(function () {
+            var a = $(this).index();
+//            console.log(a);
+            $(".modal-body1").html("");
+            $(".modal-body1").append(
+                `课程名称:${projectObj[a].projectName} <br>
+                 课程编号：${projectObj[a].projectId} <br>
+                 科任老师：${projectObj[a].employeeName}<br>
+                 课程描述：${projectObj[a].projectContent}`
+            );
+        })
+    });
+    //遍历数据数组
+    for (let i = 0; i < projectObj.length; i++) {
+        //渲染原有数据课程
+        $("#course_btn").append(
+            `<button  data-toggle="modal" data-target="#myModal" class="btn btn-sm newBtn" >${projectObj[i].projectName + (projectObj[i].projectId)}</button>`
+        );
+
+        $("#course_btn button").css({
+            backgroundColor: "#FFD777",
+            width: "100px",
+            height: "40px",
+            marginTop: "15px",
+            marginLeft: "15px",
+            color: "white",
+        });
+        //模态框弹出课程简介
+        $("#course_btn button").click(function () {
+            var a = $(this).index();
+//            console.log(a);
+            $(".modal-body1").html("");
+            $(".modal-body1").append(
+                `课程名称:${projectObj[a].projectName} <br>
+                 课程编号：${projectObj[a].projectId} <br>
+                 科任老师：${projectObj[a].employeeName}<br>
+                 课程描述：${projectObj[a].projectContent}`
+            );
+        });
+
+
+    }
+    //
+    //修改按钮
+    $("#changeCourse").click(function () {
+
+        renderTatbleInput(currentTableInput)
+
+
+    });
+    // 给模态框里面的下拉列表绑定选中事件
+    let textt;
+    $("#abc").on("change", "select", function () {
+        textt = $(this).val();
+//        var text1 = $(this).childNodes(1);
+//        console.log(text);
+//        console.log(text1)
+        //改变当前显示那个班级
+        currentTableInput = textt;
+        renderTatbleInput(currentTableInput)
+    })
+    $("#selName").on("click","option",function () {
+        console.log(51258)
+    })
+    //saveChange按钮
+    $("#saveChange").click(function () {
+        renderTatble(currentTableInput)
+    })
+    function getValue(num,day,obj) {
+        console.log(arr1[num][day])
+        console.log(arr1[0].Sat)
+        console.log(num)
+        console.log(day)
+        console.log(obj.value)
+        if(currentTableInput==1){
+            arr1[num][day] = obj.value
+            console.log(arr1)
+        }
+        else if(currentTableInput==2){
+            arr2[num][day] = obj.value
+            console.log(arr2)
+        }
+        else if(currentTableInput==3){
+            arr3[num][day] = obj.value
+            console.log(arr3)
+        }
+
+    }
+</script>
+</body>
+</html>

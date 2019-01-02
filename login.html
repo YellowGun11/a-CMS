@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="Dashboard">
+    <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
+
+    <title>树道国际幼儿园</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="./font/assets/css/bootstrap.css" rel="stylesheet">
+    <!--external css-->
+    <link href="./font/assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
+      <link rel="stylesheet" href="./font/assets/lineicons/style.css" />
+      <!-- Custom styles for this template -->
+    <link href="./font/assets/css/style.css" rel="stylesheet">
+    <link href="./font/assets/css/style-responsive.css" rel="stylesheet">
+	  <style>
+		  html {
+			  width: 100%;
+			  height: 100%;
+			  display: table;
+		  }
+
+		  body {
+			  display: table-cell;
+			  height: 100%;
+		  }
+		  .tel,.weChat{
+			 padding-left: 40px;
+			 padding-right: 40px;
+		  }
+          p{
+              margin: 30px 0 10px;
+          }
+          .logo{
+              width: 170px;
+              height: 150px;
+              position: absolute;
+              left: 43%;
+              top: 0px;
+          }
+          .container{
+              position: relative;
+          }
+          .form-login {
+              max-width: 330px;
+              margin: 180px auto 0;
+          }
+          .form-login h2.form-login-heading {
+              margin: 0;
+              padding: 12px 0px;
+              font-size: 20px;
+          }
+          #login-page{
+              background: url("./images/login/1.jpg") no-repeat;
+              background-size:cover;
+              width: 100%;
+              height: 100%;
+              animation: thelogin 20s ease-in-out 0s infinite;
+          }
+          @keyframes thelogin {
+              0%   {background:url("./images/login/1.jpg") no-repeat;background-size:cover;}
+              33%  {background: url("./images/login/2.jpg") no-repeat;background-size:cover;}
+              66%  {background: url("./images/login/3.jpg") no-repeat;background-size:cover;}
+              100%   {background:url("./images/login/1.jpg") no-repeat;background-size:cover;}
+          }
+	  </style>
+  </head>
+  <body>
+	  <div id="login-page">
+	  	<div class="container">
+            <img class="logo" src="./images/login/logo.gif" alt="logo">
+		      <form class="form-login" action="" method="post">
+		        <h2 class="form-login-heading">请登录</h2>
+		        <div class="login-wrap">
+		            <input type="text" class="form-control" id="Id" placeholder="请输入员工编号" autofocus>
+		            <br>
+		            <input type="password" class="form-control" id="keyWord"placeholder="请输入密码"autofocus>
+		            <label class="checkbox">
+		                <span class="pull-right">
+		                    <a data-toggle="modal" href="login.html#myModal"> 找回密码?</a>
+		                </span>
+		            </label>
+		            <button class="btn btn-theme btn-block" id="submit"><i class="fa fa-lock"></i> 登陆</button>
+		            <div class="login-social-link centered">
+						<p>第三方登陆</p>
+		                <button class="btn btn-facebook tel" type="submit"><i class="fa" data-icon="&#xe017;"style="margin-right: 10px"></i>手机号</button>
+		                <button class="btn btn-twitter weChat" type="submit"><i class="fa" data-icon="&#xe014;"style="margin-right: 10px"></i>微信</button>
+		            </div>
+		        </div>
+
+		          <!-- Modal -->
+		          <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModal" class="modal fade">
+		              <div class="modal-dialog">
+		                  <div class="modal-content">
+		                      <div class="modal-header">
+		                          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		                          <h4 class="modal-title">找回密码</h4>
+		                      </div>
+		                      <div class="modal-body">
+		                          <p>请输入您的电话号码，我们将尽快核实信息。</p>
+		                          <input type="text" name="email" placeholder="Telephone number" autocomplete="off" class="form-control placeholder-no-fix">
+		
+		                      </div>
+		                      <div class="modal-footer">
+		                          <button data-dismiss="modal" class="btn btn-default" type="button">取消</button>
+		                          <button class="btn btn-theme" type="button">确认</button>
+		                      </div>
+		                  </div>
+		              </div>
+		          </div>
+		          <!-- modal -->
+		      </form>
+			<div id="disable" style="position: absolute;top: 300px; right:45%;width:150px;padding:10px 0;text-align:center;border-radius:20px;background-color: rgba(87,87,87,0.67);color: red;font-weight: 700;display: none">账号或密码错误，请重试</div>
+	  	</div>
+	  </div>
+
+    <!-- js placed at the end of the document so the pages load faster -->
+    <script src="lib/bootstrap-3.3.5-dist/js/jquery-1.11.3.js"></script>
+    <script src="lib/bootstrap-3.3.5-dist/js/bootstrap.js"></script>
+  	<script src="js/theDate.js"></script>
+	  <script>
+//声明部分
+//函数部分
+localStorage.clear();
+function theLogin(theID,theKeyWord){
+    console.log(theID)
+    console.log(theKeyWord)
+    // href="#"
+    login.forEach((item,index)=>{
+        if(theID===item.loginNumber&&theKeyWord===item.keyWord){
+            $(".form-login").attr('action','index.html')
+            sessionStorage.setItem('user', JSON.stringify(item))
+            return item
+		}
+	})
+}
+//功能部分
+
+		$("#submit").on('click',function () {
+            theLogin($("#Id").val(),$("#keyWord").val())
+        })
+	  </script>
+  </body>
+</html>

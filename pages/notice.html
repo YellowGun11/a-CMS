@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>园长登录</title>
+    <link rel="stylesheet" type="text/css" href="../lib/bootstrap-3.3.5-dist/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="../css/notice.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/noticeroll.css"/>
+    <link rel="stylesheet" type="text/css" href="../font/font-awesome/css/font-awesome.css"/>
+</head>
+<body>
+<!--<span class="new_notice">最近发布公告：</span>-->
+<h3 class="title" style="position: relative;left: -4px"><i class="fa fa-angle-right"></i> <span class="page_title"
+                                                                                                style="cursor: pointer;position: relative;left: -10px">发布公告</span>
+</h3>
+<div id="notice_edge">
+    <div id="notice_show">
+        <div id="notice_show_one" style="background-color: #337ab7;">公告栏</div>
+        <div class="notice" style="height: 34px;margin-left: 24px;margin-top: 24px;line-height: 34px">
+            <ul>
+                <li>
+                    <a href="../pages/news.html"><span>2018-12-17</span>
+                        今天全校放假，全体教职工早点回家，回家路上注意安全！
+                    </a>
+                </li>
+                <li>
+                    <a href="../pages/news.html"><span>2018-12-15</span>
+                        今天下午2点半，所有教工人员在1楼办公室开会，不得缺席！
+                    </a>
+                </li>
+                <li>
+                    <a href="../pages/news.html"><span>2018-12-14</span>
+                        今天由每个班的班主任负责，开展校园亲子运动会！
+                    </a>
+                </li>
+                <li>
+                    <a href="../pages/news.html"><span>2018-12-12</span>
+                        今天教师加餐，每人可在二楼餐厅领取鸡腿10个！
+                    </a>
+                </li>
+                <li>
+                    <a href="../pages/news.html"><span>2018-12-10</span>
+                        校长决定，本周末全体教师以及部门人员组织团建，目标阿尔卑斯山！
+                    </a>
+                </li>
+                <li>
+                    <a href="../pages/news.html"><span>2018-12-08</span>
+                        今天放假了，全体教职工早点回家，回家路上注意安全！
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div id="notice_show_btnDiv">
+            <!--<p>院长：</p>
+            <h5 style="margin-left: 5px">刘某人</h5>
+            <img src="../images/ui-zac.jpg" style="height: 66px">-->
+            <button style="width: 84px;height: 40px">添加</button>
+        </div>
+        <div id="notice_show_header" style="position: relative;top:-30px"><span style="margin-top: 3px">标题</span><span
+                style="margin-top: 3px">发布时间</span></div>
+        <div id="notice_show_myDiv">
+                       <!--编写一个新的公告时原先的公告全部清空-->
+            <ul name="notice_show_myDiv_ul" id="notice_show_myDiv_ul">
+                <li data-toggle="modal" data-target="#li10" data-name="li10" style="position: absolute;">
+                    <span>本月放假通知</span>
+                    <span>2018年12月19日 19:57</span>
+                </li>
+                <li data-toggle="modal" data-target="#li11" data-name="li11" style="position: relative;top: 40px">
+                    <span>近日校园趣事</span>
+                    <span>2018年12月17日 14:50</span>
+                </li>
+                <li data-toggle="modal" data-target="#li12" data-name="li12" style="position: relative;top: 20px">
+                    <span>9-10月份奖罚通告</span>
+                    <span>2018年12月14日 20:20</span>
+                </li>
+                <li data-toggle="modal" data-target="#li13" data-name="li13" style="position: relative;">
+                    <span>最新校园制度</span>
+                    <span>2018年12月10日 17:24</span>
+                </li>
+                <li data-toggle="modal" data-target="#li14" data-name="li14" style="position: relative;top: -20px">
+                    <span>最近一个月老师们的评优情况</span>
+                    <span>2018年12月07日 11:44</span>
+                </li>
+            </ul>
+            <div id="notice_show_two"></div>
+        </div>
+    </div>
+    <div id="notice_issue" class="container-fluid">
+        <div class="container">
+            <div class="row">
+                <span class="col-lg-1 col-md-1">标题:</span>
+                <input type="text" class="col-lg-9 col-md-10" id="notice_issue_theme"/>
+            </div>
+        </div>
+        <br/>
+        <div class="container">
+            <div class="row">
+                <span class="col-lg-1 col-md-1">发送给:</span>
+                <img id="notice_myImg" src="../images/imgNotice/add.png" style="width: 35px;height: 25px">
+                <!--<input type="text" class="col-lg-10 col-md-8" id="notice_issue_details"/>-->
+                <input type="text" class="col-lg-9 col-md-10" id="notice_issue_details"/>
+            </div>
+        </div>
+        <div class="container">
+            <div id="check">
+                <!-- <img id="myImg" src="../images/imgNotice/cam.png" style="width: 40px;height: 40px" onclick="$('#checkImg').click();">-->
+                <button class="title"
+                        style="width:110px;height:40px;border:0;border-radius:3px;background-color: #337ab7;"><i
+                        class="glyphicon glyphicon-camera"
+                        style="margin:0;padding:0;width: 30px;height: 20px;color: white;"></i> <span class="page_title"
+                                                                                                     style="cursor:pointer;color: white;"
+                                                                                                     onclick="$('#checkImg').click();">上传图片</span>
+                </button>
+                <!--<label>上传图片</label>-->
+            </div>
+            <input type="file" onchange="checkImg(this)" style="display: none;" id="checkImg">
+        </div>
+        <div id="notice_issue_myText">
+            <textarea name=" " id="notice_issue_userText" cols="30" rows="10" class="col-lg-9"></textarea>
+        </div>
+        <div id="notice_issue_myFn">
+            <button id="notice_show_send">发送</button>
+            <button id="notice_show_close">取消</button>
+            <br>
+            <span id="notice_issue_hint">请输入内容</span>
+        </div>
+    </div>
+    <div id="myBox" class="container-fluid">
+        <div style="font-size: 16px; margin-bottom: 10px">选择接收人 :</div>
+        <div>
+            <div id="notice_send_box_two" onclick="noticeSendTwo()" class="notice_send_box">
+                <div class="notice_send_box_one_div1">部门人员</div>
+                <div id="notice_send_box_one_div2" class="notice_send_box_one_div2 glyphicon glyphicon-plus"></div>
+            </div>
+            <div id="notice_send_box_box2" class="notice_send_box_box">
+                <div id="notice_send_to_myText1_1">教务部</div>
+                <div id="notice_send_to_myText1_2">财务部</div>
+                <div id="notice_send_to_myText1_3">行政人事部</div>
+                <div id="notice_send_to_myText1_4">后勤管理部</div>
+            </div>
+
+            <div id="notice_send_box_three" onclick="noticeSendThree()" class="notice_send_box">
+                <div class="notice_send_box_one_div1">大班</div>
+                <div id="notice_send_box_one_div3" class="notice_send_box_one_div2 glyphicon glyphicon-plus"></div>
+            </div>
+            <div id="notice_send_box_box3" class="notice_send_box_box">
+                <div id="notice_send_to_myText2_1">太阳班</div>
+                <div id="notice_send_to_myText2_2">月亮班</div>
+                <div id="notice_send_to_myText2_3">星星班</div>
+            </div>
+
+
+            <div id="notice_send_box_four" onclick="noticeSendFour()" class="notice_send_box">
+                <div class="notice_send_box_one_div1">中班</div>
+                <div id="notice_send_box_one_div4" class="notice_send_box_one_div2 glyphicon glyphicon-plus"></div>
+            </div>
+            <div id="notice_send_box_box4" class="notice_send_box_box">
+                <div id="notice_send_to_myText3_1">大地班</div>
+                <div id="notice_send_to_myText3_2">海洋班</div>
+                <div id="notice_send_to_myText3_3">天空班</div>
+            </div>
+            <div id="notice_send_box_five" onclick="noticeSendFive()" class="notice_send_box">
+                <div class="notice_send_box_one_div1">小班</div>
+                <div id="notice_send_box_one_div5" class="notice_send_box_one_div2 glyphicon glyphicon-plus"></div>
+            </div>
+            <div id="notice_send_box_box5" class="notice_send_box_box">
+                <div id="notice_send_to_myText4_1">微风班</div>
+                <div id="notice_send_to_myText4_2">雨露班</div>
+                <div id="notice_send_to_myText4_3">阳光班</div>
+            </div>
+        </div>
+        <div id="notice_activate">
+            <section id="notice_send_activate">你未选择联系人!</section>
+            <p id="notice_activates" style="font-size: 14px">已选择接收人 ：</p>
+        </div>
+        <div id="notice_activate_btn">
+            <button id="notice_activate_True" type="button" class="btn btn-default" style="margin-left: 10px">确认
+            </button>
+            <button id="notice_activate_False" type="button" class="btn btn-default">取消</button>
+        </div>
+    </div>
+</div>
+<script src="../lib/bootstrap-3.3.5-dist/js/jquery-1.11.3.js"></script>
+<script src="../lib/bootstrap-3.3.5-dist/js/bootstrap.js"></script>
+<script src="../js/laypage.js"></script>
+<script src="../js/notice.js"></script>
+<script src="../js/noticeroll.js"></script>
+</body>
+</html>

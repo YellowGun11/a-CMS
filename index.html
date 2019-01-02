@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="Dashboard">
+    <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
+    <title>树道国际幼儿园后台管理系统</title>
+    <!-- Bootstrap core CSS -->
+    <link href="lib/bootstrap-3.3.5-dist/css/bootstrap.css" rel="stylesheet">
+    <!--external css-->
+    <link href="./font/assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
+    <!--<link rel="stylesheet" type="text/css" href="./font/assets/css/zabuto_calendar.css">-->
+    <!--<link rel="stylesheet" type="text/css" href="./font/assets/js/gritter/css/jquery.gritter.css" />-->
+    <!--<link rel="stylesheet" type="text/css" href="./font/assets/lineicons/style.css">-->
+    <!-- Custom styles for this template -->
+    <!--<link href="./font/assets/css/style.css" rel="stylesheet">-->
+    <!--<link href="./font/assets/css/style-responsive.css" rel="stylesheet">-->
+    <!--<script src="./font/assets/js/chart-master/Chart.js"></script>-->
+    <style>
+        .the-index-body{
+            overflow: hidden;
+            margin: 0;
+            padding: 0;
+            /*background-color: yellow;*/
+        }
+        *{
+            /*outline: 1px solid red;*/
+            box-sizing: border-box;
+        }
+        /*html{*/
+            /*display: table;*/
+        /*}*/
+        body {
+            color: #797979;
+            background: #f2f2f2;
+            font-family: Lucida Grande, Lucida Sans Unicode, Lucida Sans, DejaVu Sans, Verdana," sans-serif";
+            padding: 0px !important;
+            margin: 0px !important;
+            font-size: 13px;
+        }
+        a, a:hover,a:focus {
+            text-decoration: none;
+            outline:none;
+            background: transparent;
+            color: white;
+        }
+        p {
+            margin: 0 0 10px;
+        }
+        img {
+            vertical-align: middle;
+        }
+        ::selection {
+            background: #68dff0;
+            color: #fff;
+        }
+        .the-nav{
+            width: 100%;
+            background: #ffd777;
+            border-bottom: 1px solid #c9aa5f;
+            padding: 0;
+            margin: 0;
+            z-index: 100;
+        }
+        .head-in{
+        min-height: 60px;
+        }
+        .sidebar-toggle-box {
+            float: left;
+            margin-top: 20px;
+            margin-right: 20px;
+        }
+        .fa-bars:before {
+            content: "\f0c9";
+            font-size:25px ;
+            color: white;
+        }
+        .logo{
+            font-size: 20px;
+            color: #ffffff;
+            float: left;
+            margin-top: 17px;
+        }
+        .pull-right {
+            float: right !important;
+            padding-left: 0;
+            margin-bottom: 0;
+            list-style: none;
+        }
+        ul.top-menu > li > .logout {
+            color: #f2f2f2;
+            font-size: 14px;
+            border-radius: 4px;
+            -webkit-border-radius: 4px;
+            border: 1px solid #64c3c2 !important;
+            padding: 5px 15px;
+            margin-right: 15px;
+            background: #68dff0;
+            margin-top: 15px;
+        }
+        #sidebar {
+            width:100%;
+            height: 575px;
+            background: #424a5d;
+            padding: 0;
+            margin: 0;
+        }
+        .centered {
+            text-align: center;
+        }
+        ul.sidebar-menu, ul.sidebar-menu li ul.sub {
+            /*margin: -2px 0 0;*/
+            padding: 0;
+        }
+        ul.sidebar-menu {
+            margin-top: 20px;
+        }
+        .img-circle {
+            border-radius: 50%;
+        }
+        #sidebar h5 {
+            color: #f2f2f2;
+            font-weight: 700;
+        }
+        ul.sidebar-menu li {
+             /*line-height: 20px !important;*/
+            margin-bottom: 5px;
+            margin-left: 10px;
+            margin-right: 10px;
+        }
+        .mt {
+            margin-top: 20px;
+        }
+        ul.sidebar-menu li a {
+            color: #aeb2b7;
+            text-decoration: none;
+            display: block;
+            padding: 10px 0 10px 10px;
+            font-size: 14px;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+        ul.sidebar-menu li a i {
+            font-size: 15px;
+            padding-right: 6px;
+        }
+        .fa {
+            display: inline-block;
+            font-family: FontAwesome;
+            font-style: normal;
+            font-weight: normal;
+            line-height: 1;
+        }
+        ul.sidebar-menu li a span {
+            display: inline-block;
+        }
+        .dcjq-icon {
+            height: 17px;
+            width: 17px;
+            display: inline-block;
+/*找个图改一改            */
+            /*background: url(./images/index/) no-repeat top;*/
+            border-radius: 3px;
+            -moz-border-radius: 3px;
+            -webkit-border-radius: 3px;
+            position: absolute;
+            right: 10px;
+            top: 15px;
+        }
+        #sidebar .sub-menu > .sub li {
+            padding-left: 32px;
+        }
+        #sidebar ul li {
+            position: relative;
+        }
+        ul.sidebar-menu li ul.sub li {
+            background: #424a5d;
+            margin-bottom: 0;
+            margin-left: 0;
+            margin-right: 0;
+        }
+        .aside{
+            margin: 0;
+            padding: 0;
+            float: left;
+        }
+        .the-iframe{
+            float: left;
+            outline: #00c5de 1px solid;
+            margin: 0;
+            padding: 0;
+            height:575px;
+            /*background-color: crimson;*/
+            /*width:80%;*/
+        }
+        iframe{
+            width: 100%;
+            height: 575px;
+        }
+        ul.sidebar-menu li a {
+            padding: 8px 0 8px 10px;}
+        ul.sidebar-menu li a:hover {
+            background-color: #00c5de;
+            color: white;
+        }
+        ul.sidebar-menu li ul.sub li{
+            padding-left: 0;
+        }
+        #sidebar .sub-menu > .sub li {
+            padding-left: 0px;
+        }
+        #sidebar .sub-menu > .sub li>a {
+            padding-left: 42px;
+        }
+        #top_menu .nav > li, ul.top-menu > li {
+            float: left;
+        }
+        .nav > li {
+            position: relative;
+            display: block;
+        }
+
+        .dropdown {
+            position: relative;
+        }
+        ul li {
+            list-style: none;
+        }
+        ul.top-menu > li > a {
+            color: #666666;
+            font-size: 16px;
+            border-radius: 4px;
+            -webkit-border-radius: 4px;
+            border: 1px solid #666666 !important;
+            padding: 2px 6px;
+            margin-right: 15px;
+        }
+        .nav > li > a {
+            position: relative;
+            display: block;
+            padding: 10px 15px;
+        }
+        .notify-row .badge {
+            position: absolute;
+            right: -10px;
+            top: -10px;
+            z-index: 100;
+        }
+        .bg-theme {
+            background-color: #68dff0;
+        }
+        .bg-theme {
+            background-color: #68dff0;
+        }
+        .badge {
+            display: inline-block;
+            min-width: 10px;
+            padding: 3px 7px;
+            font-size: 12px;
+            font-weight: bold;
+            line-height: 1;
+            color: #fff;
+            text-align: center;
+            white-space: nowrap;
+            vertical-align: baseline;
+            background-color: #777;
+            border-radius: 10px;
+        }
+        .nav {
+            padding-left: 0;
+            margin-bottom: 0;
+            list-style: none;
+        }
+        .notify-row {
+            float: left;
+            margin-top: 15px;
+            margin-left: 92px;
+        }
+        .notify-row .badge {
+            position: absolute;
+            right: -10px;
+            top: -10px;
+            z-index: 100;
+        }
+
+        .bg-theme {
+            background-color: #68dff0;
+        }
+        #top_menu .nav > li, ul.top-menu > li {
+            float: left;
+        }
+        .nav > li {
+            position: relative;
+            display: block;
+        }
+        .dropdown {
+            position: relative;
+        }
+        ul li {
+            list-style: none;
+        }
+        ul.top-menu > li > a {
+            color: #666666;
+            font-size: 16px;
+            border-radius: 4px;
+            -webkit-border-radius: 4px;
+            border: 1px solid #666666 !important;
+            padding: 2px 6px;
+            margin-right: 15px;
+        }
+        .nav > li > a {
+            position: relative;
+            display: block;
+            padding: 10px 15px;
+        }
+        a, a:hover, a:focus {
+            text-decoration: none;
+            outline: none;
+        }
+        a {
+            color: #428bca;
+            text-decoration: none;
+        }
+        a {
+            background: transparent;
+        }
+        .dropdown-menu.extended {
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.176) !important;
+            }
+        .dropdown-menu.extended {
+                max-width: 300px !important;
+                min-width: 160px !important;
+                top: 42px;
+                width: 235px !important;
+                padding: 0;
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.176) !important;
+                border: none !important;
+                border-radius: 4px;
+                -webkit-border-radius: 4px;
+            }
+        .dropdown-menu {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                z-index: 1000;
+                display: none;
+                float: left;
+                min-width: 160px;
+                padding: 5px 0;
+                margin: 2px 0 0;
+                font-size: 14px;
+                text-align: left;
+                list-style: none;
+                background-color: #fff;
+                -webkit-background-clip: padding-box;
+                background-clip: padding-box;
+                border: 1px solid #ccc;
+                border: 1px solid rgba(0, 0, 0, .15);
+                border-radius: 4px;
+                -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+                box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+            }
+        .notify-arrow-green {
+            border-color: transparent transparent #68dff0;
+            border-bottom-color: #68dff0 !important;
+            border-top-color: #68dff0 !important;
+        }
+        .notify-arrow {
+            border-style: solid;
+            border-width: 0 9px 9px;
+            height: 0;
+            margin-top: 0;
+            opacity: 0;
+            position: absolute;
+            left: 7px;
+            top: -18px;
+            transition: all 0.25s ease 0s;
+            width: 0;
+            z-index: 10;
+            margin-top: 10px;
+            opacity: 1;
+        }
+        .dropdown-menu.extended li p.green {
+            background-color: #68dff0;
+            color: #fff;
+        }
+
+        .dropdown-menu.extended li p {
+            background-color: #F1F2F7;
+            color: #666666;
+            margin: 0;
+            padding: 10px;
+            border-radius: 4px 4px 0px 0px;
+            -webkit-border-radius: 4px 4px 0px 0px;
+        }
+        .dropdown-menu.extended li a {
+            padding: 15px 10px !important;
+            width: 100%;
+            display: inline-block;
+        }
+
+        .dropdown-menu.extended li a {
+            border-bottom: 1px solid #EBEBEB !important;
+            font-size: 14px;
+            list-style: none;
+        }
+        .dropdown-menu > li > a {
+            display: block;
+            padding: 3px 20px;
+            clear: both;
+            font-weight: normal;
+            line-height: 1.42857143;
+            color: #333;
+            white-space: nowrap;
+        }
+        .dropdown-menu.inbox li a .photo img {
+            border-radius: 2px 2px 2px 2px;
+            float: left;
+            height: 40px;
+            margin-right: 4px;
+            width: 40px;
+        }
+        img {
+            vertical-align: middle;
+        }
+        .dropdown-menu.inbox li a .subject {
+            display: block;
+        }
+        .dropdown-menu.inbox li a .subject .from {
+            font-size: 14px;
+            font-weight: 600;
+        }
+        .dropdown-menu.inbox li a .subject .time {
+            font-size: 14px;
+            font-style: italic;
+            font-weight: bold;
+            position: absolute;
+            right: 5px;
+        }
+        a{
+            cursor: pointer!important;
+        }
+
+        /*滚动条样式*/
+    </style>
+</head>
+<body>
+
+<div id="container-fluid">
+    <!--黄色导航栏开始-->
+    <header class="row the-nav">
+        <div class="head-in col-lg-12">
+            <div class="sidebar-toggle-box">
+                <div class="fa fa-bars tooltips"></div>
+            </div>
+        <a href="###" class="logo"><b>树道国际幼儿园</b></a>
+            <div class="nav notify-row" id="top_menu">
+                <!--  notification start -->
+                <ul class="nav top-menu">
+                    <!-- settings start -->
+                    <li class="dropdown">
+                        <a  class="dropdown dropdown-toggle" href="lock_screen.html">
+                            <i class="fa fa-lock"style="padding: 0 4px"></i>
+                        </a>
+                    </li>
+                    <!-- settings end -->
+                    <!-- inbox dropdown start-->
+                    <li id="header_inbox_bar" class="dropdown">
+                        <a data-toggle="dropdown" class="dropdown-toggle" href="index.html#">
+                            <i class="fa fa-envelope-o"></i>
+                            <span class="badge bg-theme">5</span>
+                        </a>
+                        <ul class="dropdown-menu extended inbox">
+                            <div class="notify-arrow notify-arrow-green"></div>
+                            <li>
+                                <p class="green">您有五条新消息</p>
+                            </li>
+<!--这里通过渲染出新消息                            -->
+                            <li>
+                                <a href="index.html#">
+                                    <span class="photo"><img alt="avatar" src="./font/assets/img/ui-zac.jpg"></span>
+                                    <span class="subject">
+                                    <span class="from">王昆鹏</span>
+                                    <span class="time">刚刚</span>
+                                    </span>
+                                    <span class="message">
+                                        最近咋样？
+                                    </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="index.html#">
+                                    <span class="photo"><img alt="avatar" src="./font/assets/img/ui-divya.jpg"></span>
+                                    <span class="subject">
+                                    <span class="from">刘树道</span>
+                                    <span class="time">4分钟前.</span>
+                                    </span>
+                                    <span class="message">
+                                     Hi,我需要你的帮助。
+                                    </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="index.html#">
+                                    <span class="photo"><img alt="avatar" src="./font/assets/img/ui-danro.jpg"></span>
+                                    <span class="subject">
+                                    <span class="from">朱昆峰</span>
+                                    <span class="time">2小时前</span>
+                                    </span>
+                                    <span class="message">
+                                        我在大班教室。
+                                    </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="index.html#">
+                                    <span class="photo"><img alt="avatar" src="./font/assets/img/ui-sherman.jpg"></span>
+                                    <span class="subject">
+                                    <span class="from">Dj Sherman</span>
+                                    <span class="time">4 小时前</span>
+                                    </span>
+                                    <span class="message">
+                                        明天的课程总结完成了吗？
+                                    </span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!-- inbox dropdown end -->
+                </ul>
+                <!--  notification end -->
+            </div>
+            <ul class="nav pull-right top-menu">
+                <li><a class="logout" href="login.html">注销</a></li>
+            </ul>
+        </div>
+    </header>
+    <!--黄色导航栏结束-->
+    <!--测边导航栏开始-->
+    <div class="row the-index-body">
+        <div class="aside col-sm-2 col-md-2 col-lg-2">
+            <div id="sidebar" class="nav-collapse " tabindex="5000" style="overflow: hidden">
+                <!-- sidebar men u start-->
+                <ul class="sidebar-menu" id="nav-accordion" style="display: block;">
+                    <p class="centered"><a href="indexPage.html" target="myIframe"><img class="img-circle" width="60"></a></p>
+<!--这里渲染名字                    -->
+                    <h5 id="name"class="centered"></h5>
+<!--这里渲染名字                    -->
+                    <li class="mt">
+<!--这里个人页面跳转                    -->
+                        <a class="" href="indexPage.html" target="myIframe">
+                            <i class="fa fa-dashboard"></i>
+                            <span>主页</span>
+                        </a>
+                    </li>
+                    <li class="sub-menu dcjq-parent-li">
+                        <a class="dcjq-parent">
+                            <i class="fa fa-desktop"></i>
+                            <span>基础管理</span></a>
+<!--这里的span考虑需不需要                            -->
+                            <!--<span class="glyphicon glyphicon-menu-down" style="float: right"></span></a>-->
+ <!--添加js需要展开的                       -->
+                        <ul id='basicModule' class="sub" style="overflow: hidden;display:none">
+ <!--这里的li需要渲染出，根据权限不一样渲染出来的也不一样                      -->
+                        </ul>
+                    </li>
+                    <li class="sub-menu dcjq-parent-li">
+                        <a id="course" class="dcjq-parent">
+                            <i class="fa fa-book"></i>
+                            <span>课程管理</span></a>
+                        <ul class="sub" style="overflow: hidden;display:none">
+                            <!--这里的li需要渲染出，根据权限不一样渲染出来的也不一样                      -->
+                        </ul>
+                    </li>
+                    <li class="sub-menu dcjq-parent-li">
+                        <a class="dcjq-parent">
+                            <i class="fa fa-tasks"></i>
+                            <span>考勤管理</span>
+                            <span class="dcjq-icon"></span></a>
+                        <ul id="checkWork" class="sub" style="overflow: hidden;display:none">
+<!--这里的li需要渲染出，根据权限不一样渲染出来的也不一样                      -->
+                        </ul>
+                    </li>
+                    <li class="sub-menu dcjq-parent-li">
+                        <a  class="dcjq-parent">
+                            <i class="fa fa-th"></i>
+                            <span>最新公告</span></a>
+                        <ul id="noticeModule" class="sub" style="overflow: hidden;display:none">
+<!--这里的li需要渲染出，根据权限不一样渲染出来的也不一样                      -->
+                        </ul>
+                    </li>
+                    <li class="sub-menu dcjq-parent-li">
+                        <a id="photoModule" class="dcjq-parent">
+                            <i class=" fa fa-bar-chart-o"></i>
+                            <span>照片墙</span></a>
+                        <ul  class="sub" style="overflow: hidden;display:none">
+<!--这里的li需要渲染出，根据权限不一样渲染出来的也不一样                      -->
+                        </ul>
+                    </li>
+                </ul>
+                <!-- sidebar menu end-->
+            </div>
+        </div>
+        <!--测边导航栏结束-->
+        <div class="the-iframe col-sm-10 col-md-10 col-lg-10">
+            <iframe src="./indexPage.html" name="myIframe" frameborder="0" marginheight="10px" marginwidth="10px" scrolling="yes"></iframe>
+         <!--引入ifrime   -->
+        </div>
+    </div>
+</div>
+
+<script src="lib/bootstrap-3.3.5-dist/js/jquery-1.11.3.js"></script>
+<script src="lib/bootstrap-3.3.5-dist/js/bootstrap.js"></script>
+<script src="js/permission.js"></script>
+<script>
+    //声明部分
+    let userJsonStr = sessionStorage.getItem('user');
+    userEntity = JSON.parse(userJsonStr);
+    console.log(userEntity)
+    //函数部分
+function basic(permission){
+        if (permission==1){
+            permissionArray.Administrator.basicModule.forEach((item,index)=>{
+                console.log(userEntity.permission)
+                $(`<li><a href='${permissionArray.Administrator.basicModuleHref[index]}' target="myIframe">${item}</a></li>`).appendTo('#basicModule')
+            })
+           }
+        else if (permission==-1){
+            permissionArray.Director.basicModule.forEach((item,index)=>{
+                $(`<li><a href='${permissionArray.Director.basicModuleHref[index]}' target="myIframe">${item}</a></li>`).appendTo('#basicModule')
+            })
+        }
+        else if (permission==0){
+            permissionArray.Teacher.basicModule.forEach((item,index)=>{
+               $(`<li><a href='${permissionArray.Teacher.basicModuleHref[index]}' target="myIframe">${item}</a></li>`).appendTo('#basicModule')
+            })
+        }
+    }
+
+function checkWork(permission){
+        if (permission==1){
+            permissionArray.Administrator.checkWork.forEach((item,index)=>{
+                console.log(userEntity.permission)
+                $(`<li><a href='${permissionArray.Administrator.checkWorkHref[index]}' target="myIframe">${item}</a>`).appendTo('#checkWork')
+            })
+        }
+        else if (permission==-1){
+            permissionArray.Director.checkWork.forEach((item,index)=>{
+                $(`<li><a href='${permissionArray.Director.checkWorkHref[index]}' target="myIframe">${item}</a>`).appendTo('#checkWork')
+            })
+        }
+        else if (permission==0){
+            permissionArray.Teacher.checkWork.forEach((item,index)=>{
+                $(`<li><a href='${permissionArray.Teacher.checkWorkHref[index]}' target="myIframe">${item}</a>`).appendTo('#checkWork')
+            })
+        }
+    }
+function noticeModule(permission){
+        if (permission==1){
+            permissionArray.Administrator.noticeModule.forEach((item,index)=>{
+                console.log(userEntity.permission);
+                $(`<li><a href='${permissionArray.Administrator.noticeModuleHref[index]}' target="myIframe">${item}</a></li>`).appendTo('#noticeModule')
+            })
+        }
+        else if (permission==-1){
+            permissionArray.Director.noticeModule.forEach((item,index)=>{
+                $(`<li><a href='${permissionArray.Director.noticeModuleHref[index]}' target="myIframe">${item}</a></li>`).appendTo('#noticeModule')
+            })
+        }
+        else if (permission==0){
+            permissionArray.Teacher.noticeModule.forEach((item,index)=>{
+                $(`<li><a href='${permissionArray.Teacher.noticeModuleHref[index]}' target="myIframe">${item}</a></li>`).appendTo('#noticeModule')
+            })
+        }
+    }
+
+function photoModule(permission){
+        if (permission==1){
+            $('#photoModule').attr(
+                {
+                    "href":permissionArray.Administrator.photoModuleHref,
+                    "target":"myIframe"
+                }
+            )
+
+        }
+        else if (permission==-1){
+            $('#photoModule').attr(
+                {
+                    "href":permissionArray.Director.photoModuleHref,
+                    "target":"myIframe"
+                }
+            )
+        }
+        else if (permission==0){
+            $('#photoModule').attr(
+                {
+                    "href":permissionArray.Teacher.photoModuleHref,
+                    "target":"myIframe"
+                }
+            )
+        }
+    }
+function course(permission){
+    if (permission==1){
+        $('#course').attr(
+            {
+                "href":permissionArray.Administrator.courseHref,
+                "target":"myIframe"
+            }
+        )
+
+    }
+    else if (permission==-1){
+        $('#course').attr(
+            {
+                "href":permissionArray.Director.courseHref,
+                "target":"myIframe"
+            }
+        )
+    }
+    else if (permission==0){
+        $('#course').attr(
+            {
+                "href":permissionArray.Teacher.courseHref,
+                "target":"myIframe"
+            }
+        )
+    }
+}
+    //功能部分
+    $(".centered img").attr("src",userEntity.picture)
+    $("#name").append(userEntity.loginName)
+    basic(userEntity.permission)
+    checkWork(userEntity.permission)
+    noticeModule(userEntity.permission)
+    photoModule(userEntity.permission)
+    course(userEntity.permission)
+    $(".sub-menu>a").on("click",function () {
+        console.log($(this).siblings(".sub")[0].style.display)
+        if($(this).siblings(".sub")[0].style.display=="none"){
+            $(this).siblings(".sub").slideDown("1000");
+        }
+        else{
+            $(this).siblings(".sub").slideUp("1000");
+        }
+        $(this).parents().siblings(".sub-menu").children(".sub").slideUp("1000");
+    })
+</script>
+</body>
+</html>

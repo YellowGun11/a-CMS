@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>照片墙</title>
+    <link href="../lib/bootstrap-3.3.5-dist/css/bootstrap.css" rel="stylesheet">
+    <style>
+        body{
+            padding: 0;
+            margin: 0;
+        }
+        .next_box{
+            float: left;
+        }
+
+        /*===============公共样式===*/
+        .btn{
+            margin-top: 10px;
+        }
+
+        .photo_box{
+            margin-top: 50px;
+        }
+        select{
+            /*清除select默认样式*/
+            margin-top: 10px;
+             appearance:none;
+            -moz-appearance:none;
+            -webkit-appearance:none;
+            -ms-appearance:none;
+            border:1px solid #CCC;
+            width:98px;
+            height:35px;
+            /*自定义箭头的样式，记得背景一定要加 白色或其他*/
+            /*background:url("../images/xiangxia.png") no-repeat scroll right center #fff;*/
+            /*ie下,原默认的箭头样式还是会显示，所以这里把自定义的样式给去除了*/
+            background:#fff\9;
+            color:#666;
+            padding:8px;
+            outline:none;
+            text-align: center;
+        }
+        .photo_box{
+            position: relative;
+            margin-top: 100px;
+        }
+        .photo_box2{
+            position: absolute;
+            /*opacity: 0;*/
+            display: none;
+        }
+        .photo_box div:nth-child(1){
+            display: block;
+        }
+        #banji{
+            background: #337ab7;
+            color: whitesmoke;
+            border-radius: 5px;
+            margin-top: 12px;
+        }
+        .tt{
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+         <div class="container-fluid">
+             <div class="col-lg-12 col-md-12" id="nav">
+                 <h3 class="col-lg-4 col-md-4 "><i class="glyphicon  glyphicon-menu-right"></i>照片墙</h3>
+                 <div class="col-md-3 col-md-offset-5 tt">
+                     <button type="button" class="btn btn-round btn-primary glyphicon glyphicon glyphicon-plus" data-toggle="modal" data-target="#myModal">添加图片</button>
+                     <div class="modal fade" tabindex="-1" role="dialog" id="myModal">
+                         <div class="modal-dialog" role="document">
+                             <div class="modal-content">
+                                 <div class="modal-header">
+                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                     <h4 class="modal-title ">发布图片</h4>
+                                 </div>
+                                 <div class="modal-body">
+                                     <input type="file" id="xdaTanFileImg" onchange="xmTanUploadImg(this)" accept="image/*"/>
+                                     <a href="#" class="thumbnail">
+                                         <img id="xmTanImg" src="">
+                                         <div id="xmTanDiv"></div>
+                                     </a>
+
+                                 </div>
+                                 <div class="modal-footer">
+                                     <button type="button" class="btn btn-default" data-dismiss="modal" id="fabu">发布</button>
+                                     <button type="button" class="btn btn-primary" data-dismiss="modal">取消发布</button>
+                                 </div>
+                             </div>
+                         </div>
+                     </div>
+                     <div class="btn-group">
+                         <div class=" next_box">
+                             <select name="" id="banji">
+                                 <option value="0">大 班 全年级</option>
+                                 <option value="1">中 班 全年级</option>
+                                 <option value="2">小 班 全年级</option>
+                             </select>
+                         </div>
+                     </div>
+                 </div>
+
+             </div>
+             <!--===================shang=======================-->
+
+             <div class="photo_box">
+                     <div class="photo_box2" >
+                     <div class="col-lg-12 col-md-12" >
+                         <div class="col-sm-6 col-md-3" id="taiyang">
+                             <a href="daban_taiyangban.html" target="_blank" class="thumbnail">
+                                 <img src="../images/hua1.jpg" alt="">
+                             </a>
+                         </div>
+                         <div class="col-sm-6 col-md-3">
+                             <a href="#"  class="thumbnail">
+                                 <img src="../images/timg%20(51).jpg" alt="" >
+                             </a>
+                         </div>
+                         <div class="col-sm-6 col-md-3">
+                             <a href="#" class="thumbnail">
+                                 <img src="../images/timg%20(21).jpg" alt="">
+                             </a>
+                         </div>
+                         <div class="col-sm-6 col-md-3">
+                             <a href="#" class="thumbnail">
+                                 <img src="../images/timg%20(61).jpg" alt="">
+                             </a>
+                         </div>
+                     </div>
+                     <div class="col-sm-12 col-md-12" >
+                         <div class="col-sm-6 col-md-3" id="daban">
+                             <a href="#" class="thumbnail">
+                                 <img src="../images/timg1.jpg" alt="">
+                             </a>
+                         </div>
+                         <div class="col-sm-6 col-md-3">
+                             <a href="#" class="thumbnail">
+                                 <img src="../images/timg11.jpg" alt="">
+                             </a>
+                         </div>
+                         <div class="col-sm-6 col-md-3">
+                             <a href="#" class="thumbnail">
+                                 <img src="../images/timg71.jpg" alt="">
+                             </a>
+                         </div>
+                         <div class="col-sm-6 col-md-3">
+                             <a href="#" class="thumbnail">
+                                 <img src="../images/timg%20(41).jpg" alt="">
+                             </a>
+                         </div>
+                     </div>
+                      <div class="col-sm-12 col-md-12" id="kk"></div>
+                 </div>
+                     <div class="photo_box2">
+                     <div class="col-lg-12 col-md-12">
+                         <div class="col-sm-6 col-md-3" id="tiankong">
+                             <a href="#" class="thumbnail">
+                                 <img src="../images/timg1.jpg" alt="">
+                             </a>
+                         </div>
+                         <div class="col-sm-6 col-md-3">
+                             <a href="#" class="thumbnail">
+                                 <img src="../images/timg1.jpg" alt="">
+                             </a>
+                         </div>
+                         <div class="col-sm-6 col-md-3">
+                             <a href="#" class="thumbnail">
+                                 <img src="../images/timg1.jpg" alt="">
+                             </a>
+                         </div>
+                         <div class="col-sm-6 col-md-3">
+                             <a href="#" class="thumbnail">
+                                 <img src="../images/timg1.jpg" alt="">
+                             </a>
+                         </div>
+                     </div>
+                     <div class="col-lg-12 col-md-12">
+                         <div class="col-sm-6 col-md-3" id="haiyang">
+                             <a href="#" class="thumbnail">
+                                 <img src="../images/timg1.jpg" alt="">
+                             </a>
+                         </div>
+                         <div class="col-sm-6 col-md-3">
+                             <a href="#" class="thumbnail">
+                                 <img src="../images/qiang3.jpg" alt="">
+                             </a>
+                         </div>
+                         <div class="col-sm-6 col-md-3">
+                             <a href="#" class="thumbnail">
+                                 <img src="../images/qiang2.jpg" alt="">
+                             </a>
+                         </div>
+                     </div>
+
+                 </div>
+                     <div class="photo_box2">
+                     <div class="col-lg-12 col-md-12">
+                         <div class="col-sm-6 col-md-3" id="weife">
+                             <a href="#" class="thumbnail">
+                                 <img src="../images/timg1.jpg" alt="">
+                             </a>
+                         </div>
+                         <div class="col-sm-6 col-md-3">
+                             <a href="#" class="thumbnail">
+                                 <img src="../images/timg1.jpg" alt="">
+                             </a>
+                         </div>
+                         <div class="col-sm-6 col-md-3">
+                             <a href="#" class="thumbnail">
+                                 <img src="../images/timg1.jpg" alt="">
+                             </a>
+                         </div>
+                         <div class="col-sm-6 col-md-3">
+                             <a href="#" class="thumbnail">
+                                 <img src="../images/timg1.jpg" alt="">
+                             </a>
+                         </div>
+                     </div>
+                     <div class="col-lg-12 col-md-12">
+                         <div class="col-sm-6 col-md-3" id="yulu">
+                             <a href="#" class="thumbnail">
+                                 <img src="../images/timg1.jpg" alt="">
+                             </a>
+                         </div>
+                         <div class="col-sm-6 col-md-3">
+                             <a href="#" class="thumbnail">
+                                 <img src="../images/timg1.jpg" alt="">
+                             </a>
+                         </div>
+                     </div>
+
+                 </div>
+             </div>
+         </div>
+          <script src="../lib/bootstrap-3.3.5-dist/js/jquery-1.11.3.js"></script>
+          <script src="../lib/bootstrap-3.3.5-dist/js/bootstrap.min.js"></script>
+          <script  src="../js/js-12-13.js"></script>
+</body>
+</html>

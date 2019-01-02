@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="x-ua-compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width , initial-scale=1">
+    <title>Title</title>
+    <link rel="stylesheet" href="../lib/css/bootstrap.css">
+    <style>
+        #myTextarea{
+            outline: none;
+            resize:none;
+            /*去掉拖动*/
+            font-size: 16px;
+        }
+        .myImages{
+            float: left;
+        }
+        li{
+            cursor: pointer;
+        }
+        #Attendance-table{
+            box-shadow: 0px 5px 5px 0px rgba(130, 130, 130, 0.49);
+        }
+    </style>
+</head>
+<body>
+<header class="container-fluid">
+    <div class="row">
+        <h3 class=" col-lg-12 col-md-12 ">
+            <span class="glyphicon glyphicon-menu-right" style="font-size:15px ;line-height: 26px "></span>
+           <span class="h3 ">考勤</span>
+        </h3>
+    </div>
+</header>
+<section>
+    <div class="container-fluid" style="margin-top: 20px">
+        <div style="height: 400px;width: 50%" class="myImages" >
+            <div id="container" style="height: 100%" ></div>
+        </div>
+        <div style="height: 400px;width: 50%" class="myImages">
+            <div id="containerOne" style="height: 100%"></div>
+        </div>
+        <div >
+            <div class="dropdown col-lg-1 col-md-1" id="Attendance-select-one">
+                <button class="btn btn-default btn-info dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="true">
+                    小班
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                    <li><a >小班</a></li>
+                    <li><a>中班</a></li>
+                    <li><a>大班</a></li>
+                </ul>
+            </div>
+            <div class="dropdown col-lg-1 col-md-1" id="Attendance-select-two">
+                <button class="btn btn-default btn-success dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="true">
+                    选择班级
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" id="dropdown-menu">
+                    <li><a>雨露班</a></li>
+                    <li><a>微风班</a></li>
+                    <li><a>阳光班</a></li>
+                </ul>
+            </div>
+            <div class="input-group col-lg-3 col-lg-offset-9 col-md-3 col-md-offset-9" id="mySearch">
+                <input type="text" class="form-control search_text" aria-label="Amount (to the nearest dollar)"
+                                                          placeholder="请输入查询的学生名称或学号">
+                <span class="input-group-addon search_btn"><i class="glyphicon glyphicon-search"></i></span>
+            </div>
+            <table class="table table-striped table-advance table-hover container" id="Attendance-table" style="margin-top: 20px">
+                <thead>
+                <tr>
+                </tr>
+                </thead>
+                <tbody id="myXiangXiContent">
+                </tbody>
+            </table>
+            <div class="container-fluid text-right">
+                <nav aria-label="Page navigation" id="Attendance-btn">
+                    <ul class="pagination" id="laypage">
+                        <li id="Attendance-leftBtn">
+                            <a aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+                        <li id="Attendance-rightBtn">
+                            <a aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            <!-- Button trigger modal -->
+            <!-- Modal -->
+            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content" id="appContent">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script src="../js/theDate.js"></script>
+<script src="../lib/js/jquery-1.11.3.js"></script>
+<script src="../lib/js/bootstrap.js"></script>
+<script src="../lib/js/echarts.common.min.js"></script>
+<script>
+    let kaiShi = 0;
+    let page = 0;
+    let thisPage = 1;
+    let myZongYe = 0;
+    let myKaiShi = 0;
+    let myGrade = "小班";
+    let myClass;
+    let clickChange = true
+    let guaiBaoBao = []
+    let mySearch = []
+    let chiDao = []
+    let myQingJia = []
+    let mySmClass = [];
+    let dataTime = new Date();
+        for (let i = 0; i < students.length; i++) {
+            students[i]["ruYuanTime"] = "12-21"+" "+Math.round(Math.random()*(9-7)+7)+":"+parseInt(Math.random()*50);
+            students[i]["chuYuanTime"] = "12-20"+" "+Math.round(Math.random()*(18-16)+16)+":"+parseInt(Math.random()*50);
+            students[50]["ruYuanTime"] = "";
+            students[88]["ruYuanTime"] = "";
+            students[50]["chuYuanTime"] = "";
+            students[88]["chuYuanTime"] = "";
+            students[50]["thisTime"] = "2018-12-10"
+            students[50]["qingJiaTime"] ="2018-12-21"
+            students[50]["qingJiaLiYou"] ="今天不开心!不想来上学"
+            students[88]["thisTime"] = "2018-12-18"
+            students[88]["qingJiaTime"] ="2018-12-21"
+            students[88]["qingJiaLiYou"] ="今天很开心!不想来上学"
+            for (let j = 0; j < students.length; j++) {
+                if (students[i].studentId == students[j].studentId){
+                    students[i]["emali"] = students[j].telNumber + "@163.com"
+                }
+            }
+            if (students[i].ruYuanTime==""){
+                students[i].qingJia = "请假"
+            }else if (students[i].ruYuanTime.slice(6,7) >= 9 &&students[i].ruYuanTime.slice(8,10) <=30 ||students[i].ruYuanTime.slice(6,7) < 9 ){
+                students[i].qingJia = "乖宝宝"
+            }else if(students[i].ruYuanTime.slice(6,7) >= 9&& students[i].ruYuanTime.slice(8,10) >30 ){
+                students[i].qingJia = "迟到"
+            }
+            mySmClass = students
+        }
+    function getNum(arr) {
+        guaiBaoBao = []
+        chiDao = []
+        myQingJia = []
+        for (let k = 0 ; k< students.length; k++){
+            if (arr[k].qingJia == "乖宝宝"){
+                guaiBaoBao.push(arr[k])
+                // console.log(guaiBaoBao.length)
+            } else if (arr[k].qingJia == "迟到"){
+                chiDao.push(arr[k])
+                // console.log(chiDao.length)
+            } else if (arr[k].qingJia == "请假"){
+                myQingJia.push(students[k])
+            }
+        }
+    }
+    getNum(students)
+    //给对象里加上自己需要的数据！！！
+    $(document).ready(function () {
+        mySmClass = []
+        //清空数组
+        for (let i = 0; i < students.length; i++) {
+            if (students[i].grade.slice(0, 2) == "小班") {
+                mySmClass.push(students[i])
+            }
+        }
+    })
+    //默认显示小班
+    function myTables(arr, table, pageNum, booler) {
+        //这个是加表头
+        if (booler) {
+            $(`${table} thead tr`).append(`
+                <th>编号</th>
+                `)
+            for (let item in arr[0]) {
+                if (item == "studentId") {
+                    $(`${table} thead tr`).append(`
+                <th>学号</th>
+                `)
+                } else if (item == "studentName") {
+                    $(`${table} thead tr`).append(`
+                <th>姓名</th>
+                `)
+                } else if (item == "grade") {
+                    $(`${table} thead tr`).append(`
+                <th>班级</th>
+                `)
+                } else if (item == "ruYuanTime") {
+                    $(`${table} thead tr`).append(`
+                <th>入园时间</th>
+                `)
+                } else if (item == "qingJia") {
+                    $(`${table} thead tr`).append(`
+                <th>请假情况</th>
+                `)
+                }
+            }
+            $(`${table} thead tr`).append(`
+                <th>操作</th>
+                `)
+        }
+        $(`${table} tbody`).html("")
+        //这个是初始化每个页显示的内容
+        //这个是加tbody
+        for (let i = kaiShi; i < kaiShi + pageNum; i++) {
+            if (i < arr.length) {
+                $(`${table} tbody`).append(`
+                <tr >
+                    <td>${i + 1}</td>
+                    <td>${arr[i].studentId}</td>
+                    <td>${arr[i].studentName}</td>
+                    <td>${arr[i].grade}</td>
+                    <td>${arr[i].ruYuanTime}</td>
+                    <td class="myQingJia">${arr[i].qingJia}</td>
+                    <td>
+                        <span type="button" title="查看详情" class=" glyphicon glyphicon-search  btn btn-info btn-xs btn-lock myContent" data-toggle="modal" data-target="#myModal" index="1"></span>
+                        <span  title="请假" class="btn btn-danger btn-xs btn-lock glyphicon glyphicon-calendar myContent" data-toggle="modal" data-target="#myModal"></span>
+                    </td>
+                </tr>
+                <tr>
+
+                </tr>
+            `)
+            }
+        }
+    }
+    //这个是渲染tbody
+    function myBtn(arr, table) {
+        $(`${table} ul `).html(`
+                    <li id="Attendance-leftBtn">
+                        <a aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                    <li id="Attendance-rightBtn">
+                        <a  aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+        `)
+        //这个是清空选项页
+        for (let i = 0; i < arr.length / 8; i++) {
+            $(`${table} ul li:last-child`).before(`
+                        <li class="liClick">
+                            <a>${i + 1}</a>
+
+                        </li>
+                     `)
+        }
+        $(`${table}`).on("click", ".liClick", function () {
+            thisPage = $(this).text();
+            $(".liClick").removeClass("active")
+            $(this).addClass("active");
+            kaiShi = (thisPage - 1) * 8;
+            myTables(arr, "#Attendance-table", 8, false)
+        })
+        //数组里有每页显示8个 一个多少页
+        $("#Attendance-leftBtn").click(function () {
+
+            if (thisPage == "1"){
+
+            }else {
+                thisPage--
+                kaiShi = (thisPage - 1) * 8
+                $(".liClick").removeClass("active")
+                $(".liClick").eq(thisPage-1).addClass("active")
+                myTables(arr, "#Attendance-table", 8, false)
+
+            }
+        })
+        //向左切换
+        $("#Attendance-rightBtn").click(function () {
+
+            if (thisPage >= Math.ceil(arr.length/8)){
+
+            }else {
+                thisPage++
+                kaiShi = (thisPage-1) * 8
+                $(".liClick").removeClass("active")
+                //页数切换 active 也在跟着改变
+                $(".liClick").eq(thisPage-1).addClass("active")
+                myTables(arr, "#Attendance-table", 8, false)
+            }
+
+        })
+        // 向右切换
+      $("#Attendance-btn ul li:nth-child(2)").addClass("active")
+    }
+    $(document).ready(function () {
+        myTables(mySmClass, "#Attendance-table", 8, true);
+        myBtn(mySmClass, "#Attendance-btn")
+    });
+    //这个是改变下拉列表的文本值的方法
+    $("#Attendance-select-one").on("click", "li", function () {
+        myGrade = $(this).text()
+        mySmClass = []
+        //清空数组
+        for (let i = 0; i < students.length; i++) {
+            if (students[i].grade.slice(0, 2) == myGrade) {
+                mySmClass.push(students[i])
+            }
+        }
+        //把当前点击的与班级和学生班级作对比  如果满足就把满足的重新push到新数组里面
+        $("#Attendance-select-one button").html(`
+                ${myGrade}
+                <span class="caret"></span>
+            `)
+        //点击下拉列表 显示当前点击的文本值
+        if ($(this).text() == "大班") {
+            $("#dropdown-menu").html(`
+                    <li><a >太阳班</a></li>
+                    <li><a>月亮班</a></li>
+                    <li><a >星星班</a></li>
+            `)
+            $("#dropdownMenu2").html(`
+                    选择班级
+                    <span class="caret"></span>
+            `)
+            myBtn(mySmClass, "#Attendance-btn")
+            kaiShi=0
+            thisPage = 1
+            myTables(mySmClass, "#Attendance-table", 8, false);
+        }
+        //如果点击的是大班 把第二个下拉列表的值从新赋值 把下面 push的新数组 在方法里调用
+        else if ($(this).text() == "中班") {
+            $("#dropdown-menu").html(`
+                    <li><a >天空班</a></li>
+                    <li><a >大地班</a></li>
+                    <li><a >海洋班</a></li>
+            `)
+            $("#dropdownMenu2").html(`
+                    选择班级
+                    <span class="caret"></span>
+            `)
+            myBtn(mySmClass, "#Attendance-btn")
+            kaiShi = 0
+          thisPage = 1
+            myTables(mySmClass, "#Attendance-table", 8, false);
+        }
+        //如果点击的是大班 把第二个下拉列表的值从新赋值 把下面 push的新数组 在方法里调用
+        else if ($(this).text() == "小班") {
+            $("#dropdown-menu").html(`
+                    <li><a>雨露班</a></li>
+                    <li><a>微风班</a></li>
+                    <li><a >阳光班</a></li>
+            `)
+            $("#dropdownMenu2").html(`
+                    选择班级
+                    <span class="caret"></span>
+            `)
+            myBtn(mySmClass, "#Attendance-btn")
+          kaiShi = 0
+          thisPage = 1
+            myTables(mySmClass, "#Attendance-table", 8, false);
+        }
+    });
+    //获取筛选框的文本并修改原来的文本
+    $("#Attendance-select-two").on("click", "li", function () {
+        myClass = $(this).text()
+        $("#Attendance-select-two button").html(`
+                ${myClass}
+                <span class="caret"></span>
+            `)
+        mySmClass = []
+        //清空数组
+        for (let i = 0; i < students.length; i++) {
+            if (students[i].grade.slice(3, 6) == myClass) {
+                mySmClass.push(students[i])
+            }
+        }
+        //把当前点击的与班级和学生班级作对比  如果满足就把满足的重新push到新数组里面
+        //点击下拉列表 显示当前点击的文本值
+        if ($(this).text() == "天空班") {
+            myBtn(mySmClass, "#Attendance-btn")
+            kaiShi = 0//点击下拉框 重置开始页数
+            myTables(mySmClass, "#Attendance-table", 8, false);
+        }
+        //如果点击的是大班 把第二个下拉列表的值从新赋值 把下面 push的新数组 在方法里调用
+        else if ($(this).text() == "大地班") {
+            myBtn(mySmClass, "#Attendance-btn")
+          kaiShi = 0
+          thisPage = 1
+            myTables(mySmClass, "#Attendance-table", 8, false);
+        }
+        //如果点击的是大班 把第二个下拉列表的值从新赋值 把下面 push的新数组 在方法里调用
+        else if ($(this).text() == "海洋班") {
+            myBtn(mySmClass, "#Attendance-btn")
+          kaiShi = 0
+          thisPage = 1
+            myTables(mySmClass, "#Attendance-table", 8, false);
+        }
+        else if ($(this).text() == "阳光班") {
+            myBtn(mySmClass, "#Attendance-btn")
+            kaiShi = 0
+            thisPage = 1
+            myTables(mySmClass, "#Attendance-table", 8, false);
+        }
+        //如果点击的是大班 把第二个下拉列表的值从新赋值 把下面 push的新数组 在方法里调用
+        else if ($(this).text() == "微风班") {
+            myBtn(mySmClass, "#Attendance-btn")
+            kaiShi = 0
+            thisPage = 1
+            myTables(mySmClass, "#Attendance-table", 8, false);
+        }
+        else if ($(this).text() == "雨露班") {
+            myBtn(mySmClass, "#Attendance-btn")
+            kaiShi = 0
+          thisPage = 1
+            myTables(mySmClass, "#Attendance-table", 8, false);
+        }
+        //如果点击的是大班 把第二个下拉列表的值从新赋值 把下面 push的新数组 在方法里调用
+        else if ($(this).text() == "月亮班") {
+            myBtn(mySmClass, "#Attendance-btn")
+          kaiShi = 0
+          thisPage = 1
+            myTables(mySmClass, "#Attendance-table", 8, false);
+        }
+        else if ($(this).text() == "星星班") {
+            myBtn(mySmClass, "#Attendance-btn")
+          kaiShi = 0
+          thisPage = 1
+            myTables(mySmClass, "#Attendance-table", 8, false);
+        }
+        //如果点击的是大班 把第二个下拉列表的值从新赋值 把下面 push的新数组 在方法里调用
+        else if ($(this).text() == "太阳班") {
+            myBtn(mySmClass, "#Attendance-btn")
+          kaiShi = 0
+          thisPage = 1
+            myTables(mySmClass, "#Attendance-table", 8, false);
+        }
+
+    })
+    //获取第二个筛选框的文本并修改原来的文本 选择文本改变表格的内容
+    $("#appContent").html("")
+    //初始化查看详情列表
+
+    //将数组里的对象 渲染进去
+    let content
+    $("#myXiangXiContent").on("click", ".myContent", function () {
+        for (let i = 0; i < students.length; i++) {
+                if ($(this).parent().prev().prev().prev().prev().prev().text() == students[i].studentId) {
+                    if ( $(this).attr("index")=="1") {
+                        $("#appContent").html(`
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title h2" id="myModalLabel"> ${students[i].studentName}</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6" ><span class="font-weight h5">性别：</span><span>${students[i].sex}</span></div>
+                            <div class="col-lg-6 col-md-6"><span class="font-weight h5">学号：</span><span>${students[i].studentId}</span></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12"><span class="font-weight h5">班级：</span><span>${students[i].grade}</span></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6"><span class="font-weight h5">父母姓名：</span><span>${students[i].parentsName}</span></div>
+                            <div class="col-lg-6 col-md-6"><span class="font-weight h5">电话：</span><span>${students[i].telNumber}</span></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6"><span class="font-weight h5">入园时间：</span><span>${students[i].ruYuanTime}</span></div>
+                            <div class="col-lg-6 col-md-6"><span class="font-weight h5">出园时间：<span><span>${students[i].chuYuanTime}</span></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6"><span class="font-weight h5">是否请假：</span><span>${students[i].qingJia}</span></div>
+                            <div class="col-lg-6 col-md-6"><span class="font-weight h5"> 地址：</span><span>${students[i].address}</span></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12"><span class="font-weight h5">邮箱：</span><span>${students[i].emali}</span></div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    </div>
+                    `)
+                    }else {
+                        $("#appContent").html(`
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title h2" id="myModalLabel"> ${students[i].studentName}</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-lg-6" col-md-6><span>父母姓名：</span><span>${students[i].parentsName}</span></div>
+                            <div class="col-lg-6" col-md-6><span>电话：</span><span>${students[i].telNumber}</span></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12"><span>邮箱：</span><span>${students[i].emali}</span></div>
+                        </div>
+                        <div>
+                            <p>请假时间</p>
+                            <input type="date">
+                            <p>请假理由</p>
+                           <textarea name="myTextarea" id="myTextarea" cols="68" rows="3" placeholder="输入字数不少于5个"></textarea>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                        <button type="button" class="btn btn-primary AttendanceSave" >保存并发送邮件</button>
+                    </div>
+                    `)
+                    }
+                }
+            }
+    })
+    //给查看详情加一个点击事件
+    function Search(arr, table) {
+        $(`${table} tbody`).html("")
+        mySearch = []
+        for (let i = 0; i < arr.length; i++) {
+            if ($("#mySearch input").val() == arr[i].studentId) {//这个是判断搜索框输入的学号
+                mySearch.push(arr[i])
+            }
+            else if ($("#mySearch input").val() == arr[i].studentName) {//这个是判断搜索框输入的姓名
+                mySearch.push(arr[i])
+            }
+            else if ($("#mySearch input").val() == arr[i].qingJia) {//这个是判断搜索框输入的姓名
+                mySearch.push(arr[i])
+            }
+        }if (mySearch.length>0){//如果搜索出东西就渲染
+        myTables(mySearch, "#Attendance-table", 8, false);
+        myBtn(mySearch, "#Attendance-btn")
+      } else {//如果没有找到就不改变
+        myTables(mySmClass, "#Attendance-table", 8, false);
+        myBtn(mySmClass, "#Attendance-btn")
+        alert("未找到"+" "+$("#mySearch input").val()+" "+"请重新输入")
+      }
+    }
+    //筛选
+    $("#mySearch").on("click", "span", function () {
+        Search( mySmClass, "#Attendance-table")
+    })
+    //点击事件
+    $("#appContent").on("click",".AttendanceSave",function () {
+      if ($("#appContent input").val() != "" && $("#appContent textarea").val() != "" && $("#appContent textarea").val().length>5){
+        var inputTime = $("#appContent input").val().split("-")
+        var thisTime = dataTime.toLocaleDateString().split("/")
+            if (inputTime[0]>=thisTime[0]) {
+              if (inputTime[1]>=thisTime[1]) {
+                if (inputTime[2]>=thisTime[2]) {
+                  for (let i = 0 ; i < mySmClass.length; i++) {
+                    if ($(this).parent().prev().prev().text().slice(52, 55) == mySmClass[i].studentName) {
+                      mySmClass[i].qingJia = "请假"
+                      mySmClass[i]["thisTime"] = dataTime.toLocaleDateString()
+                      mySmClass[i]["qingJiaTime"] = $("#appContent input").val()
+                      mySmClass[i]["qingJiaLiYou"] = $("#appContent textarea").val()
+                      $(this).attr("data-dismiss", "modal")
+                      console.log(mySmClass)
+                      if(inputTime[2]=thisTime[2]){
+                        mySmClass[i].chuYuanTime = dataTime.toLocaleString()
+                      }
+                    }
+                  }
+                }else {
+                  alert("你选择的日期不正确")
+                }
+              }else {
+                alert("你选择的月份不正确")
+              }
+            }else {
+              alert("你选择的年份不正确")
+            }
+        } else {
+            alert("你填写的时间或者请假理由不正确")
+      }
+        myTables(mySmClass, "#Attendance-table", 8, false);
+    })
+    //点击请假 修改 时间 判断是否时间输入正确 将新数据 push到students 里面
+    $("#myXiangXiContent").on("click",".myQingJia",function () {
+      $(this).parent().next().html("")
+      for (let i = 0 ; i < mySmClass.length;i++){
+        if ($(this).text() == "请假" && $(this).text()==mySmClass[i].qingJia ){
+          console.log(123)
+          if (clickChange == true){
+            clickChange = false
+            $(this).parent().next().append(`
+                    <td colspan="2" ><span>录入时间:</span>${mySmClass[i].thisTime}</td>
+                    <td colspan="2" ><span>请假时间:</span>${mySmClass[i].qingJiaTime}</td>
+                    <td colspan="3" ><span>请假理由:</span>${mySmClass[i].qingJiaLiYou}</td>
+        `)
+          }else if (clickChange==false){
+            $(this).parent().next().html("")
+            clickChange = true
+          }
+        }
+        if ($(this).text() == "迟到" && $(this).text()==mySmClass[i].qingJia ){
+          console.log(123)
+          if (clickChange == true){
+            clickChange = false
+            $(this).parent().next().append(`
+                    <td colspan="2" ><span>录入时间:</span>${mySmClass[i].thisTime}</td>
+                    <td colspan="2" ><span>请假时间:</span>${mySmClass[i].qingJiaTime}</td>
+                    <td colspan="3" ><span>请假理由:</span>${mySmClass[i].qingJiaLiYou}</td>
+        `)
+          }else if (clickChange==false){
+            $(this).parent().next().html("")
+            clickChange = true
+          }
+        }
+      }
+    })
+    //点击请假 栏  出现具体信息
+
+
+   //环形图
+    var dom = document.getElementById("container");
+    var myChart = echarts.init(dom);
+    var app = {};
+    option = null;
+    app.title = '环形图';
+    option = {
+        title : {
+            text: '全校出勤情况',
+            x:'center'
+        },
+        tooltip: {
+            trigger: 'item',
+            formatter: "{a} <br/>{b}: {c} ({d}%)"
+        },
+        legend: {
+            orient: 'vertical',
+            x: 'left',
+            data:['请假','迟到','乖宝宝']
+        },
+        series: [
+            {
+                name:'人数',
+                type:'pie',
+                radius: ['50%', '70%'],
+                avoidLabelOverlap: false,
+                label: {
+                    normal: {
+                        show: false,
+                        position: 'center'
+                    },
+                    emphasis: {
+                        show: true,
+                        textStyle: {
+                            fontSize: '30',
+                            fontWeight: 'bold'
+                        }
+                    }
+                },
+                labelLine: {
+                    normal: {
+                        show: false
+                    }
+                },
+                data:[
+
+                    {value:myQingJia.length, name:'请假'},
+                    {value:chiDao.length, name:'迟到'},
+                    {value:guaiBaoBao.length, name:'乖宝宝'}
+                ]
+            }
+        ]
+    };
+    if (option && typeof option === "object") {
+        myChart.setOption(option, true);
+    }
+    //环形图
+    function getNumOne(arr) {
+      guaiBaoBao = []
+      chiDao = []
+      myQingJia = []
+      for (let k = 0 ; k< students.length; k++){
+        if (arr[k].qingJia == "乖宝宝"){
+          guaiBaoBao.push(arr[k])
+          // console.log(guaiBaoBao.length)
+        } else if (arr[k].qingJia == "迟到"){
+          chiDao.push(arr[k])
+          // console.log(chiDao.length)
+        } else if (arr[k].qingJia == "请假"){
+          myQingJia.push(students[k])
+        }
+      }
+    }
+    getNumOne(mySmClass)
+    //二
+    var dom = document.getElementById("containerOne");
+    var myChart = echarts.init(dom);
+    var app = {};
+    option = null;
+    option = {
+        title : {
+            text: '出勤情况',
+            x:'center'
+        },
+        tooltip : {
+            trigger: 'item',
+            formatter: "{a} <br/>{b} : {c} ({d}%)"
+        },
+        legend: {
+            orient: 'vertical',
+            left: 'left',
+            data: ['请假','迟到','乖宝宝']
+        },
+        series : [
+            {
+                name: '人数',
+                type: 'pie',
+                radius : '55%',
+                center: ['50%', '60%'],
+                data:[
+                    {value:myQingJia.length, name:'请假'},
+                    {value:chiDao.length, name:'迟到'},
+                    {value:guaiBaoBao.length, name:'乖宝宝'}
+                ],
+                itemStyle: {
+                    emphasis: {
+                        shadowBlur: 10,
+                        shadowOffsetX: 0,
+                        shadowColor: 'rgba(0, 0, 0, 0.5)'
+                    }
+                }
+            }
+        ]
+    };
+    if (option && typeof option === "object") {
+        myChart.setOption(option, true);
+    }
+</script>
+</body>
+</html>

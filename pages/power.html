@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>权限管理</title>
+    <link rel="stylesheet" type="text/css" href="../lib/bootstrap-3.3.5-dist/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="../css/iconfont.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/power.css"/>
+    <link rel="stylesheet" type="text/css" href="../font/font-awesome/css/font-awesome.css"/>
+</head>
+<body>
+
+<div class="container" style="position: relative;left: -54px;top: 12px">
+    <h3 class="title" style="position: relative;left: -4px"><i class="fa fa-angle-right"></i> <span class="page_title" style="cursor: pointer;position: relative;left: -1px">权限管理</span>
+    </h3>
+</div>
+
+<div class="container" style="position: relative;left: -93px;top: -35px">
+    <hr>
+    <div class="container" style="margin-top: -20px">
+        <div class="row title">
+            <div class="col-xs-2">
+                <select class="form-control select-department">
+                    <option>职位</option>
+                    <option>班主任</option>
+                    <option>任课教师</option>
+                </select>
+            </div>
+            <div class="col-xs-2">
+                <select class="form-control select-course">
+                    <option>性别</option>
+                    <option>男</option>
+                    <option>女</option>
+                </select>
+            </div>
+            <div class="col-xs-3 pull-right" >
+                <div class="row">
+                    <div class="col-xs-8" >
+                        <input  type="text" class="form-control search-box" placeholder="...">
+                    </div>
+                    <div class="col-xs-2">
+                        <button id="search-text" type="submit" class="btn btn-primary">搜索</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <table class="table .table text-center" style="margin-top: -30px">
+        <thead id="thead-center">
+        <tr>
+            <th>
+                <span class="checked-btn">全选</span>
+            </th>
+            <th>工号</th>
+            <th>姓名</th>
+            <th>性别</th>
+            <th>出生日期</th>
+            <th>手机号码</th>
+            <th>职务</th>
+            <th>教学班级</th>
+            <th>所带班级</th>
+            <th>入职时间</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+
+        <tbody id="tbody-middle">
+
+        </tbody>
+    </table>
+    <div class="foot">
+        <button type="button" id="add-naw" class="btn btn-success" data-toggle="modal" data-target="#check_modal">新增</button>
+        <label for="checkAll-btn"><input type="button" id="checkAll-btn" class="btn btn-success checked-btn" value ="全选"></label>
+        <button type="button" class="btn btn-danger del">删除</button>
+    </div>
+</div>
+
+<section class="del_model_bg"></section>
+<section class="del_my_model">
+    <p class="title">
+        删除信息
+        <span class="closeModel">
+            <i class="iconfont icon-delete"></i>
+            </span>
+    </p>
+    <p>你真的要删除这条信息吗？</p>
+    <div class="opBtn">
+        <a href="javascript:;" class="dialog-sure" style="border-radius:3px;border:0;margin-left: 55%;background-color: #5cb85c">确定</a>
+        <a href="javascript:;" class="dialog-close" style="border-radius:3px;border:0;background-color: #D9534F;color: #ffffff">关闭</a>
+    </div>
+</section>
+
+<div class="modal fade" id="check_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" role="form">
+                    <div class="form-group">
+                        <label for="teacher-jobNum" class="col-xs-4 col-sm-3 control-label text-center">ID：</label>
+                        <div class="col-xs-7 col-sm-7">
+                            <input type="text" class="form-control" id="teacher-jobNum" placeholder="工号">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="teacher-name" class="col-xs-4 col-sm-3 control-label text-center">姓名：</label>
+                        <div class="col-xs-7 col-sm-7">
+                            <input type="text" class="form-control" id="teacher-name" placeholder="姓名">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="teacher-age" class="col-xs-4 col-sm-3 control-label text-center">出生日期：</label>
+                        <div class="col-xs-7 col-sm-7">
+                            <input type="date" class="form-control" id="teacher-age">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="teacher-tel" class="col-xs-4 col-sm-3 control-label text-center">手机号码：</label>
+                        <div class="col-xs-7 col-sm-7">
+                            <input type="text" class="form-control" id="teacher-tel" placeholder="手机号码">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="teacher-department" class="col-xs-4 col-sm-3 control-label text-center">职务：</label>
+                        <div class="col-xs-7 col-sm-7">
+                            <select class="form-control" id="teacher-department">
+
+                                <option >职务</option>
+                                <option id="department-op1">园长</option>
+                                <option id="department-op2">班主任</option>
+                                <option id="department-op3">任课教师</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="teacher-course" class="col-xs-4 col-sm-3 control-label text-center">性别：</label>
+                        <div class="col-xs-7 col-sm-7">
+                            <select class="form-control" id="teacher-course">
+                                <option >性别</option>
+                                <option id="course-op1">男</option>
+                                <option id="course-op2">女</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="teacher-class" class="col-xs-4 col-sm-3 control-label text-center">所带班级：</label>
+                        <div class="col-xs-7 col-sm-7">
+                            <select class="form-control" id="teacher-class">
+                                <option>班级</option>
+                                <option id="class-op1">大班</option>
+                                <option id="class-op2">中班</option>
+                                <option id="class-op3">小班</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="teacher-time" class="col-xs-4 col-sm-3 control-label text-center">入职时间：</label>
+                        <div class="col-xs-7 col-sm-7">
+                            <input type="date" class="form-control" id="teacher-time">
+                        </div>
+                    </div>
+                    <div class="form-group container">
+                        <div class="row">
+                            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 col-md-offset-2 ">
+                                <button type="button" class="myAddBtn1 col-md-offset-4  btn btn-primary btn-md"  data-dismiss="modal" style="background-color: #d9534f">取消</button>
+                                <button type="submit" class=" myAddBtn2 col-md-offset-4  btn btn-danger  btn-md sure-redact" data-dismiss="modal" style="background-color: #5cb85c">确定</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="../lib/bootstrap-3.3.5-dist/js/jquery-1.11.3.js"></script>
+<script src="../lib/bootstrap-3.3.5-dist/js/bootstrap.js"></script>
+<script src="../data/datas.js"></script>
+<script src="../js/power.js"></script>
+
+</body>
+</html>

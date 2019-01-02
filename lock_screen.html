@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="Dashboard">
+    <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
+    <title>树道幼儿园锁屏界面</title>
+    <link href="./font/assets/css/bootstrap.css" rel="stylesheet">
+    <link href="./font/assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
+    <link href="./font/assets/css/style.css" rel="stylesheet">
+    <link href="./font/assets/css/style-responsive.css" rel="stylesheet">
+  </head>
+  <body onload="getTime()">
+	  	<div class="container">
+	  		<div id="showtime"></div>
+	  			<div class="col-lg-4 col-lg-offset-4">
+	  				<div class="lock-screen">
+		  				<h2><a data-toggle="modal" href="#myModal"><i class="fa fa-lock"></i></a></h2>
+		  				<p style="font-size: 20px;color: white">点击解锁</p>
+				          <!-- Modal -->
+				          <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModal" class="modal fade">
+				              <div class="modal-dialog">
+				                  <div class="modal-content">
+				                      <div class="modal-header">
+				                          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				                          <h4 class="modal-title">欢迎回来</h4>
+				                      </div>
+				                      <div class="modal-body">
+<!--这里需要渲染										  -->
+				                          <p id="picture" class="centered"><img class="img-circle" width="80" ></p>
+				                          <p id="name" class="centered"></p>
+				                          <input id="password" type="password" name="password" placeholder="Password" autocomplete="off" class="form-control placeholder-no-fix">
+				                      </div>
+				                      <div class="modal-footer centered">
+				                          <button data-dismiss="modal" class="btn btn-theme04" type="button">取消</button>
+				                          <button class="btn btn-theme03" type="submit">登陆</button>
+				                      </div>
+				                  </div>
+				              </div>
+						  <div id="disable" style="position: absolute;top: 200px; right:45%;width:150px;padding:10px 0;text-align:center;border-radius:20px;background-color: rgba(87,87,87,0.67);color: red;font-weight: 700;display: none">密码错误，请重试</div>
+				          </div>
+				          <!-- modal -->
+	  				</div><! --/lock-screen -->
+	  			</div><!-- /col-lg-4 -->
+	  	
+	  	</div><!-- /container -->
+
+    <script src="./font/assets/js/jquery.js"></script>
+    <script src="./font/assets/js/bootstrap.min.js"></script>
+
+    <script type="text/javascript" src="./font/assets/js/jquery.backstretch.min.js"></script>
+    <script>
+		let bg=parseInt(Math.random()*3+1)
+        $.backstretch(`images/login/${bg}.jpg`, {speed: 500});
+        //声明部分
+        let userJsonStr = sessionStorage.getItem('user');
+        userEntity = JSON.parse(userJsonStr);
+        //函数部分
+		function login(val){
+		    if (val===userEntity.keyWord){
+		        $(location).attr('href','index.html')
+			}
+			else {
+			    $("#disable").fadeIn(1000).fadeOut(1000)
+			}
+		}
+		//功能部分
+        $("#picture img").attr("src",userEntity.picture)
+        $("#name").append(userEntity.loginName)
+		$(".btn-theme03").on("click",function () {
+			console.log($("#password").val())
+            login($("#password").val())
+        })
+    </script>
+    <script>
+        function getTime()
+        {
+            var today=new Date();
+            var h=today.getHours();
+            var m=today.getMinutes();
+            var s=today.getSeconds();
+            // add a zero in front of numbers<10
+            m=checkTime(m);
+            s=checkTime(s);
+            document.getElementById('showtime').innerHTML=h+":"+m+":"+s;
+            t=setTimeout(function(){getTime()},500);
+        }
+
+        function checkTime(i)
+        {
+            if (i<10)
+            {
+                i="0" + i;
+            }
+            return i;
+        }
+    </script>
+
+  </body>
+</html>

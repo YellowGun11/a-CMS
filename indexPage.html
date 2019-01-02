@@ -1,0 +1,446 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="Dashboard">
+    <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
+    <title>树道国际幼儿园后台管理系统</title>
+    <!-- Boots+                               0             trap core CSS -->
+    <link href="lib/bootstrap-3.3.5-dist/css/bootstrap.css" rel="stylesheet">
+    <!--external css-->
+    <link href="./font/assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="./font/assets/css/zabuto_calendar.css">
+    <link rel="stylesheet" type="text/css" href="./font/assets/js/gritter/css/jquery.gritter.css" />
+    <link rel="stylesheet" type="text/css" href="./font/assets/lineicons/style.css">
+    <!-- Custom styles for this template -->
+    <link href="./font/assets/css/style.css" rel="stylesheet">
+    <link href="./font/assets/css/style-responsive.css" rel="stylesheet">
+    <script src="./font/assets/js/chart-master/Chart.js"></script>
+    <style>
+        html::-webkit-scrollbar {display:none}
+        .row {
+             margin-right: 0;
+             margin-left: 0;
+        }
+        .white-panel .white-header{
+            background: #4cb5e1;
+        }
+        .white-panel .white-header h5{
+            color: white}
+        .profile-01 a {
+            color: white;
+            padding-top: 15px;
+            font-weight: 400;
+            font-size: 15px;
+            margin: 0 0 10px;
+        }
+        .white-panel p {
+            margin-left: 0px;
+        }
+        a{
+            cursor: pointer!important;
+        }
+
+    </style>
+</head>
+<body>
+<div id="container-fluid">
+    <div  class="row">
+        <div class="col-lg-9 col-md-9 main-chart">
+            <!-- /row mt -->
+            <div class="row mt">
+                <!-- 第一排-->
+                <div class="col-md-4 mb">
+                    <!-- 我的空间 -->
+                    <div  id="dragDiv3" class="white-panel dragDiv pn">
+                        <div id="titleBar3" class="white-header">
+                            <a id="myS" data-toggle="modal" data-target="#myModa2" style="cursor: pointer"><h5>我的空间</h5></a>
+                        </div>
+                        <!--这里需要渲染                        -->
+                        <p><img id='mySpacePicture'src="" class="img-circle" width="80"></p>
+                        <!--这里需要渲染                        -->
+                        <p><b></b></p>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <p style="color: #0f0f0f" class="small mt">我的职位</p>
+                                <!--这里需要渲染                        -->
+                                <p style="color: #0f0f0f" id="myPost"></p>
+                            </div>
+                            <div class="col-md-6">
+                                <p style="color: #0f0f0f" class="small mt">我的生日</p>
+                                <p style="color: #0f0f0f" id="myBirthday"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /col-md-4 -->
+                <div class="col-lg-4 col-md-4 col-sm-4 mb">
+                    <div class="content-panel pn">
+                        <div id="profile-01">
+                            <h3>树道国际幼儿园</h3>
+                            <h6>GRRENTREE OF INTERNATIONAL</h6>
+                        </div>
+                        <div class="profile-01 centered">
+                            <a  style="padding-top: 6px"  data-toggle="modal" data-target="#myModal">致 信 园 长 <br><span style="font-size: 12px">Letter to the director</span></a>
+                        </div>
+                        <div class="centered">
+                            <h6><i class="fa fa-envelope"></i><br>13616738297@163.com</h6>
+                        </div>
+                    </div><!-- --/content-panel ---->
+                </div>
+ <!--需要修改时间               -->
+                <div class="col-lg-4 col-md-4 col-sm-4 mb">
+                    <div class="weather-2 pn">
+                        <div class="weather-2-header">
+                            <div class="row">
+                                <div class="col-sm-6 col-xs-6">
+                                    <p>成都 武侯区</p>
+                                </div>
+                                <div class="col-sm-6 col-xs-6 goright">
+                                    <p class="small">星期五 12月 21, 2018</p>
+                                </div>
+                            </div>
+                        </div><!-- /weather-2 header -->
+                        <div class="row centered">
+                            <img src="./font/assets/img/ny.jpg" class="img-circle" width="120">
+                        </div>
+                        <div class="row data">
+                            <div class="col-sm-6 col-xs-6 goleft">
+                                <h4><b>6 ºC</b></h4>
+                                <h6>最高温度 11º</h6>
+                                <h6>最低温度 0º</h6>
+                            </div>
+                            <div class="col-sm-6 col-xs-6 goright">
+                                <h5><i class="fa fa-sun-o fa-2x"></i></h5>
+                                <h6><b>晴天</b></h6>
+<!--这里要用js获得当前时间                                -->
+                                <h5 id="theNowTime"></h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /row -->
+            <div class="row">
+            <!-- TWITTER PANEL -->
+            <div class="col-md-4 mb">
+                <div class="darkblue-panel pn">
+                    <div class="darkblue-header">
+                        <h5>树道国际开班情况</h5>
+                    </div>
+                    <canvas id="serverstatus02" height="120" width="120" style="width: 120px; height: 120px;"></canvas>
+                    <script>
+                        let doughnutData = [
+                            {
+                                value: 37,
+                                color:"#68dff0"
+                            },
+                            {
+                                value : 32,
+                                color : "#444c57"
+                            },
+                            {
+                                value : 31,
+                                color : "#ffffff"
+                            }
+                        ];
+                        let myDoughnut = new Chart(document.getElementById("serverstatus02").getContext("2d")).Doughnut(doughnutData);
+                    </script>
+                    <p>2018年 12月 21日</p>
+                    <footer>
+                        <div class="pull-left">
+                            <h5><i class="fa fa-hdd-o"></i> 84 人</h5>
+                        </div>
+                        <div class="pull-right">
+                            <h5>37% 即将毕业</h5>
+                        </div>
+                    </footer>
+                </div><!-- -- /darkblue panel ---->
+            </div>
+            <!-- /col-md-4 -->
+            <div class="col-md-4 mb">
+                <!-- INSTAGRAM PANEL -->
+                <div class="instagram-panel pn">
+                    <a href="pages/photo wall.html" target="myIframe"><i class="fa fa-instagram fa-4x"></i></a>
+                    <p>@刘树道<br>
+                        5 min. ago
+                    </p>
+                    <p><i class="fa fa-comment"></i> 18 | <i class="fa fa-heart"></i> 49</p>
+                </div>
+            </div>
+            <!-- /col-md-4 -->
+            <div class="col-lg-4 col-md-4 col-sm-4 mb">
+                    <div class="content-panel pn">
+                        <div id="blog-bg">
+                            <div class="badge badge-popular">最新公告</div>
+                            <div class="blog-title">生于中国长于世界</div>
+                        </div>
+                        <div class="blog-text">
+                            <p style="font-size: 12px">光与暖同在，活力与希望并存，一冬的积蓄后，我们迎来了最美的四月天。来自成都、自贡、都江堰的37家幼稚园，500多名小参赛选手，五大决赛片区。<a href="pages/news.html" target="myIframe">详细信息</a></p>
+                        </div>
+                    </div>
+                </div>
+            <!-- /col-md-4 -->
+        </div>
+            <!-- /row -->
+            <div class="row mt">
+                <!--CUSTOM CHART START -->
+                <div class="border-head">
+                    <h3>本校在职员工</h3>
+                </div>
+                <div class="custom-bar-chart">
+                    <ul class="y-axis">
+                        <li><span>30</span></li>
+                        <li><span>25</span></li>
+                        <li><span>20</span></li>
+                        <li><span>15</span></li>
+                        <li><span>10</span></li>
+                        <li><span>0</span></li>
+                    </ul>
+                    <div class="bar">
+                        <div class="title">教务部</div>
+                        <div class="value tooltips" data-original-title="8.500" data-toggle="tooltip" data-placement="top" style="height: 85%;"></div>
+                    </div>
+                    <div class="bar ">
+                        <div class="title">行政</div>
+                        <div class="value tooltips" data-original-title="5.000" data-toggle="tooltip" data-placement="top" style="height: 50%;"></div>
+                    </div>
+                    <div class="bar ">
+                        <div class="title">后勤</div>
+                        <div class="value tooltips" data-original-title="6.000" data-toggle="tooltip" data-placement="top" style="height: 60%;"></div>
+                    </div>
+                    <div class="bar ">
+                        <div class="title">保卫办</div>
+                        <div class="value tooltips" data-original-title="4.500" data-toggle="tooltip" data-placement="top" style="height: 45%;"></div>
+                    </div>
+                    <div class="bar">
+                        <div class="title">财务</div>
+                        <div class="value tooltips" data-original-title="3.200" data-toggle="tooltip" data-placement="top" style="height: 32%;"></div>
+                    </div>
+                    <div class="bar ">
+                        <div class="title">伙食团</div>
+                        <div class="value tooltips" data-original-title="6.200" data-toggle="tooltip" data-placement="top" style="height: 62%;"></div>
+                    </div>
+                    <div class="bar">
+                        <div class="title">党支部</div>
+                        <div class="value tooltips" data-original-title="7.500" data-toggle="tooltip" data-placement="top" style="height: 75%;"></div>
+                    </div>
+                </div>
+                <!--custom chart end-->
+            </div>
+            <!-- /row -->
+        </div>
+
+        <div   class="col-lg-3 col-md-3 ds">
+            <!-- USERS ONLINE SECTION -->
+            <h3 id="myMate">我的同事</h3>
+<!--这里通过渲染的方法渲染同事            -->
+            <!-- CALENDAR-->
+            <div id="calendar" class="mb">
+                <div class="panel green-panel no-margin">
+                    <div class="panel-body">
+                        <div id="date-popover" class="popover top" style="cursor: pointer; margin-left: 33%; margin-top: -50px; width: 175px; display: none;" data-original-title="" title="">
+                            <div class="arrow"></div>
+                            <h3 class="popover-title" style="disadding: none;"></h3>
+                            <div id="date-popover-content" class="popover-content"></div>
+                        </div>
+                        <div id="zabuto_calendar_mg3"><div class="zabuto_calendar" id="zabuto_calendar_mg3"><table class="table"><tbody><tr class="calendar-month-header"><th><div class="calendar-month-navigation" id="zabuto_calendar_mg3_nav-prev"><span><span class="fa fa-chevron-left text-transparent"></span></span></div></th><th colspan="5"><span>2018 12月</span></th><th><div class="calendar-month-navigation" id="zabuto_calendar_mg3_nav-next"><span><span class="fa fa-chevron-right text-transparent"></span></span></div></th></tr><tr class="calendar-dow-header"><th>周一</th><th>周二</th><th>周三</th><th>周四</th><th>周五</th><th>周六</th><th>周日</th></tr><tr class="calendar-dow"><td></td><td></td><td></td><td></td><td></td><td id="zabuto_calendar_mg3_2018-12-01" class="dow-clickable"><div id="zabuto_calendar_mg3_2018-12-01_day" class="day">1</div></td><td id="zabuto_calendar_mg3_2018-12-02" class="dow-clickable"><div id="zabuto_calendar_mg3_2018-12-02_day" class="day">2</div></td></tr><tr class="calendar-dow"><td id="zabuto_calendar_mg3_2018-12-03" class="dow-clickable"><div id="zabuto_calendar_mg3_2018-12-03_day" class="day">3</div></td><td id="zabuto_calendar_mg3_2018-12-04" class="dow-clickable"><div id="zabuto_calendar_mg3_2018-12-04_day" class="day">4</div></td><td id="zabuto_calendar_mg3_2018-12-05" class="dow-clickable"><div id="zabuto_calendar_mg3_2018-12-05_day" class="day">5</div></td><td id="zabuto_calendar_mg3_2018-12-06" class="dow-clickable"><div id="zabuto_calendar_mg3_2018-12-06_day" class="day">6</div></td><td id="zabuto_calendar_mg3_2018-12-07" class="dow-clickable"><div id="zabuto_calendar_mg3_2018-12-07_day" class="day">7</div></td><td id="zabuto_calendar_mg3_2018-12-08" class="dow-clickable"><div id="zabuto_calendar_mg3_2018-12-08_day" class="day">8</div></td><td id="zabuto_calendar_mg3_2018-12-09" class="dow-clickable"><div id="zabuto_calendar_mg3_2018-12-09_day" class="day">9</div></td></tr><tr class="calendar-dow"><td id="zabuto_calendar_mg3_2018-12-10" class="dow-clickable"><div id="zabuto_calendar_mg3_2018-12-10_day" class="day">10</div></td><td id="zabuto_calendar_mg3_2018-12-11" class="dow-clickable"><div id="zabuto_calendar_mg3_2018-12-11_day" class="day">11</div></td><td id="zabuto_calendar_mg3_2018-12-12" class="dow-clickable"><div id="zabuto_calendar_mg3_2018-12-12_day" class="day">12</div></td><td id="zabuto_calendar_mg3_2018-12-13" class="dow-clickable"><div id="zabuto_calendar_mg3_2018-12-13_day" class="day">13</div></td><td id="zabuto_calendar_mg3_2018-12-14" class="dow-clickable"><div id="zabuto_calendar_mg3_2018-12-14_day" class="day">14</div></td><td id="zabuto_calendar_mg3_2018-12-15" class="dow-clickable"><div id="zabuto_calendar_mg3_2018-12-15_day" class="day">15</div></td><td id="zabuto_calendar_mg3_2018-12-16" class="dow-clickable"><div id="zabuto_calendar_mg3_2018-12-16_day" class="day">16</div></td></tr><tr class="calendar-dow"><td id="zabuto_calendar_mg3_2018-12-17" class="dow-clickable"><div id="zabuto_calendar_mg3_2018-12-17_day" class="day">17</div></td><td id="zabuto_calendar_mg3_2018-12-18" class="dow-clickable"><div id="zabuto_calendar_mg3_2018-12-18_day" class="day">18</div></td><td id="zabuto_calendar_mg3_2018-12-19" class="dow-clickable"><div id="zabuto_calendar_mg3_2018-12-19_day" class="day">19</div></td><td id="zabuto_calendar_mg3_2018-12-20" class="dow-clickable"><div id="zabuto_calendar_mg3_2018-12-20_day" class="day">20</div></td><td id="zabuto_calendar_mg3_2018-12-21" class="dow-clickable"><div style="color: #ff865c" id="zabuto_calendar_mg3_2018-12-21_day" class="day">21</div></td><td id="zabuto_calendar_mg3_2018-12-22" class="dow-clickable"><div id="zabuto_calendar_mg3_2018-12-22_day" class="day">22</div></td><td id="zabuto_calendar_mg3_2018-12-23" class="dow-clickable"><div id="zabuto_calendar_mg3_2018-12-23_day" class="day">23</div></td></tr><tr class="calendar-dow"><td id="zabuto_calendar_mg3_2018-12-24" class="dow-clickable"><div id="zabuto_calendar_mg3_2018-12-24_day" class="day">24</div></td><td id="zabuto_calendar_mg3_2018-12-25" class="dow-clickable"><div id="zabuto_calendar_mg3_2018-12-25_day" class="day">25</div></td><td id="zabuto_calendar_mg3_2018-12-26" class="dow-clickable"><div id="zabuto_calendar_mg3_2018-12-26_day" class="day">26</div></td><td id="zabuto_calendar_mg3_2018-12-27" class="dow-clickable"><div id="zabuto_calendar_mg3_2018-12-27_day" class="day">27</div></td><td id="zabuto_calendar_mg3_2018-12-28" class="dow-clickable"><div id="zabuto_calendar_mg3_2018-12-28_day" class="day">28</div></td><td id="zabuto_calendar_mg3_2018-12-29" class="dow-clickable"><div id="zabuto_calendar_mg3_2018-12-29_day" class="day">29</div></td><td id="zabuto_calendar_mg3_2018-12-30" class="dow-clickable"><div id="zabuto_calendar_mg3_2018-12-30_day" class="day">30</div></td></tr><tr class="calendar-dow"><td id="zabuto_calendar_mg3_2018-12-31" class="dow-clickable"><div id="zabuto_calendar_mg3_2018-12-31_day" class="day">31</div></td><td></td><td></td><td></td><td></td><td></td><td></td></tr></tbody></table><div class="legend" id="zabuto_calendar_mg3_legend"><span class="legend-text"></ul></span></div></div></div>
+                    </div>
+                </div>
+            </div><!-- / calendar -->
+        </div><!-- /col-lg-3 -->
+    </div>
+    <!-- Modal -->
+    <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModal" class="modal fade" style="padding-right:0">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">致信园长</h4>
+                </div>
+                <div class="modal-body">
+                    <p class="centered"><img class="img-circle" width="80" src="./font/assets/img/ui-sam.jpg"></p>
+                    <p id="theMail" class="centered"></p>
+                    <textarea  style="min-height:250px " id="theText" name="text" placeholder="感谢您的宝贵建议" autocomplete="off" class="form-control placeholder-no-fix"></textarea>
+                </div>
+                <div class="modal-footer centered">
+                    <button data-dismiss="modal" class="btn btn-theme04" type="button">取消</button>
+                    <button id="send" data-dismiss="modal" class="btn btn-theme03" type="button">发送</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModa2" class="modal fade" style="padding-right:0">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close close1" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title"><span class="myName"></span>的空间</h4>
+                </div>
+                <div class="modal-body">
+                    <p class="centered"><img id="picture" class="img-circle" width="80"></p>
+                    <p><span>编号：</span><span id="myNumber"></span></p>
+                    <p><span>姓名：</span><span class="myName"></span></p>
+                    <p><span>性别：</span><span id="mySex"></span></p>
+                    <p><span>职务：</span><span id="myThePost"></span></p>
+                    <p><span>负责科目：</span><span id="mySubject"></span></p>
+                    <p><span>负责班级：</span><span id="myGrade"></span></p>
+                    <p><span>电子邮箱：</span><span id="myMail"></span></p><!--//可以改-->
+                    <p><span>电话：</span><span id="myTel"></span></p><!--//可以改-->
+                    <p><span>生日：</span><span id="myTheBirthday"></span></p><!--//可以改-->
+</div>
+                <div class="modal-footer centered">
+
+                    <!--<button data-dismiss="modal" class="btn btn-theme03" type="button">保存</button>-->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- modal -->
+</div>
+<script src="lib/bootstrap-3.3.5-dist/js/jquery-1.11.3.js"></script>
+<script src="lib/bootstrap-3.3.5-dist/js/bootstrap.js"></script>
+<script src="js/theDate.js"></script>
+<script src="js/permission.js"></script>
+<script type="text/javascript" src="./font/assets/js/jquery.backstretch.min.js"></script>
+<script>
+    //声明部分
+    let userJsonStr = sessionStorage.getItem('user');
+    userEntity = JSON.parse(userJsonStr);
+    //函数部分
+    a=login[parseInt(Math.random()*login.length)].picture
+function myMate(a){
+    for(let i=a;i<6+a;i++){
+        $("#myMate").after(`<div class="desc">
+                <div class="thumb">
+                    <img class="img-circle" src=${login[i].picture} width="35px" height="35px" align="">
+                </div>
+                <div class="details">
+                    <p><a class="myMateS" data-toggle="modal" value="000${i-1}" data-target="#myModa2">${login[i].loginName}</a><br>
+                        <muted>${login[i].grade}${login[i].thePost}</muted>
+                    </p>
+                </div>
+            </div>`)
+    }
+}
+function info(number){
+    login.forEach(item=>{
+        if(item.loginNumber==number){
+            if(number==userEntity.loginNumber){
+                $("#myTheBirthday").parents("p").after(`<p><span>密码：</span><span id="mykeyWord"></span></p>`)//可以改
+                $("#mykeyWord").html('')
+                $("#mykeyWord").append(item.keyWord)
+                $(".modal-content>.modal-footer").html('')
+                $(`<button id="recompose" onclick="recompose()" class="btn btn-theme04" type="button">修改</button><button onclick="theSave()" id="theSave" data-dismiss="modal" class="btn btn-theme03" type="button">保存</button>`
+                ).appendTo(".modal-content>.modal-footer")
+            }else {
+                $(".modal-content>.modal-footer").html('')
+                $(`<div class="modal-body" style="padding-top: 0">
+                    <textarea id="theText" name="text" placeholder="给他留言" autocomplete="off" class="form-control placeholder-no-fix"></textarea>
+                    </div>`).appendTo(".modal-content>.modal-footer")
+                $(`<button id="close2" data-dismiss="modal" class="btn btn-theme03" type="button">发送</button>`).appendTo(".modal-content>.modal-footer")
+            }
+            $("#Picture").html('')
+            $(".myName").html('')
+            $("#myNumber").html('')
+            $("#mySex").html('')
+            $("#myThePost").html('')
+            $("#mySubject").html('')
+            $("#myGrade").html('')
+            $("#myMail").html('')
+            $("#myTel").html('')
+            $("#myTheBirthday").html('')
+        $("#picture").attr("src",item.picture)
+        $(".myName").append(item.loginName)
+        $("#myNumber").append(item.loginNumber)
+        $("#mySex").append(item.sex)
+        $("#myThePost").append(item.thePost)
+        $("#mySubject").append(item.theSubject)
+        $("#myGrade").append(item.grade)
+        $("#myMail").append(item.mail)
+        $("#myTel").append(item.telNumber)
+        $("#myTheBirthday").append(item.birthday)
+        }
+    })
+}
+function recompose(){
+    let a=$('#myMail').text()
+    let b=$('#myTheBirthday').text()
+    let c=$('#mykeyWord').text()
+    let d=$('#myTel').text()
+    $("#myMail").html('')
+    $("#myTheBirthday").html('')
+    $("#mykeyWord").html('')
+    $("#myTel").html('')
+    $("#myMail").append(`<input value="${a}" type="text">`)
+    $("#mykeyWord").append(`<input value='${c}' type="text">`)
+    $("#myTheBirthday").append(`<input value='${b}' type="text">`)
+    $("#myTel").append(`<input value='${d}' type="text">`)
+    // console.log($("#myTheBirthday").children("input").val())
+}
+
+function theSave(){
+        //先改缓存
+    userEntity.birthday=$("#myTheBirthday").children("input").val()
+    userEntity.mail=$("#myMail").children("input").val()
+    userEntity.keyWord=$("#mykeyWord").children("input").val()
+    userEntity.telNumber=$("#myTel").children("input").val()
+    //再改数据库数组
+    login[parseInt(userEntity.loginNumber.split('')[3])].birthday=$("#myTheBirthday").children("input").val()
+    login[parseInt(userEntity.loginNumber.split('')[3])].mail=$("#myMail").children("input").val()
+    login[parseInt(userEntity.loginNumber.split('')[3])].keyWord=$("#mykeyWord").children("input").val()
+    login[parseInt(userEntity.loginNumber.split('')[3])].telNumber=$("#myTel").children("input").val()
+    $(".modal-body>p").children("#mykeyWord").parent().remove()
+    console.log(login[parseInt(userEntity.loginNumber.split('')[3])])
+    sessionStorage.setItem('user', JSON.stringify(login[parseInt(userEntity.loginNumber.split('')[3])]))
+    userJsonStr = sessionStorage.getItem('user');
+    userEntity = JSON.parse(userJsonStr);
+}
+    let theHours
+    let theMinutes
+    let theSeconds
+    function theNowTime(){
+        let myDate = new Date()
+        $("#theNowTime")[0].innerHTML=""
+        theHours=myDate.getHours();
+        if (myDate.getMinutes()<10) {
+            theMinutes='0'+myDate.getMinutes()
+        }
+        else {
+            theMinutes=myDate.getMinutes()
+        }
+        if (myDate.getSeconds()<10) {
+            theSeconds='0'+myDate.getSeconds()
+        }
+        else {
+            theSeconds=myDate.getSeconds()
+        }
+    $("#theNowTime").append(`${theHours}:${theMinutes}:${theSeconds}`)
+}
+    //功能部分
+    $("#mySpacePicture").attr("src",userEntity.picture)
+    $("#myPost").append(userEntity.thePost)
+    $("#myBirthday").append(userEntity.birthday)
+    $("#theMail").append(userEntity.mail)
+    myMate(parseInt(Math.random()*5))
+    theNowTime()
+    setInterval(theNowTime,1000)
+    $("#myS").on("click",function () {
+        info(userEntity.loginNumber)
+    })
+    $(".myMateS").on("click",function () {
+        info($(this).attr("value"))
+    })
+    $(".close1").on('click',function () {
+        $(".modal-body>p").children("#mykeyWord").parent().remove()
+        $(".modal-content>.modal-footer").children("#close2").remove()
+    })
+
+
+
+</script>
+
+</body>
+</html>
